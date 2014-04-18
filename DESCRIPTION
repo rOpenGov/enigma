@@ -1,0 +1,8 @@
+Package: enigma
+Title: 
+Description: 
+Version: 0.1
+Authors@R: # getOptions('devtools.desc.author')
+Depends: R (>= 3.1.0)
+License: # getOptions('devtools.desc.license')
+LazyData: true
