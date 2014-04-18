@@ -2,7 +2,13 @@ Package: enigma
 Title: 
 Description: 
 Version: 0.1
-Authors@R: # getOptions('devtools.desc.author')
-Depends: R (>= 3.1.0)
-License: # getOptions('devtools.desc.license')
+Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
+    email = "myrmecocystus@gmail.com"))
+License: MIT
 LazyData: true
+Roxygen: list(wrap = FALSE)
+Imports:
+    httr,
+    RJSONIO,
+    assertthat,
+    plyr
