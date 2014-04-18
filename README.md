@@ -56,7 +56,18 @@ This package is part of the [rOpenSci](http://ropensci.org/packages) project.
 To cite package `enigma` in publications use:
 
 ```coffee
+To cite package ‘enigma’ in publications use:
 
+  Scott Chamberlain (2014). enigma: R interface to the Enigma.io API. R package version 0.0.1.
+
+A BibTeX entry for LaTeX users is
+
+  @Manual{,
+    title = {enigma: R interface to the Enigma.io API},
+    author = {Scott Chamberlain},
+    year = {2014},
+    note = {R package version 0.0.1},
+  }
 ```
 
 Get citation information for `enigma` in R doing `citation(package = 'enigma')`
