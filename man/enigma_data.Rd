@@ -3,25 +3,37 @@
 \alias{enigma_data}
 \title{Fetch a dataset from Enigma.}
 \usage{
-enigma_data(dataset = NULL, limit = 10, select = NULL, sort = NULL,
-  page = NULL, where = NULL, search = NULL, key = NULL)
+enigma_data(dataset = NULL, limit = 50, select = NULL, sort = NULL,
+  page = NULL, where = NULL, search = NULL, key = NULL,
+  curlopts = list())
 }
 \arguments{
-\item{dataset}{X}
+\item{dataset}{Dataset name. See the `\code{\link{enigma_}} function}
 
-\item{limit}{X}
+\item{limit}{(numeric) Number of rows of the dataset to return. Default: 50}
 
-\item{select}{X}
+\item{select}{(character) Vector of columns to be returned with each row. Default is to return
+all columns.}
 
-\item{sort}{X}
+\item{sort}{(character) Sort rows by a particular column in a given direction. + denotes
+ascending order, - denotes descending. See examples.}
 
-\item{page}{X}
+\item{page}{(numeric) Paginate row results and return the nth page of results. Pages are
+calculated based on the current limit, which defaults to 50.}
 
-\item{where}{X}
+\item{where}{(character) Filter results with a SQL-style "where" clause. Only applies to
+numerical columns – use the \code{search} parameter for strings. Valid operators are >, < and =.
+Only one \code{where} clause per request is currently supported.}
 
-\item{search}{X}
+\item{search}{(character) Filter results by only returning rows that match a search query. By
+default this searches the entire table for matching text. To search particular fields only, use
+the query format "@fieldname query". To match multiple queries, the | (or) operator can be used
+eg. "query1|query2".}
 
-\item{key}{X}
+\item{key}{(character) An Enigma API key. Supply in the function call, or store in your
+\code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}}
+
+\item{curlopts}{(list) Curl options passed on to \code{httr::GET}}
 }
 \description{
 Fetch a dataset from Enigma.
@@ -29,6 +41,13 @@ Fetch a dataset from Enigma.
 \examples{
 \dontrun{
 enigma_data(dataset='us.gov.whitehouse.visitor-list')
+enigma_data(dataset='us.gov.whitehouse.visitor-list', select=c('namelast','visitee_namelast','last_updatedby'))
+enigma_data(dataset='us.gov.whitehouse.visitor-list', sort='+namelast')
+enigma_data(dataset='us.gov.whitehouse.visitor-list', where='total_people > 5')
+enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@namefull=Vitale')
+enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@namefirst=SOPHIA')
+
+enigma_data(dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier')
 }
 }
 
