@@ -10,6 +10,10 @@ enigma
 + [enigma home page](https://app.enigma.io/)
 + [API docs](https://app.enigma.io/api)
 
+### LICENSE
+
+MIT, see [LICENSE file](https://github.com/rOpenGov/enigma/blob/master/LICENSE) and [MIT text](http://opensource.org/licenses/MIT)
+
 ### Quick start
 
 #### Install
