@@ -50,6 +50,7 @@ enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NUL
   assert_that(res$headers$`content-type` == 'application/json; charset=utf-8')
   dat <- content(res, as = "text", encoding = 'utf-8')
   json <- fromJSON(dat)
+  success <- json$success
   meta <- json$info
   json$result <- lapply(json$result, as.list)
   dat2 <- do.call(rbind.fill, 
@@ -57,7 +58,7 @@ enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NUL
                     x[sapply(x, is.null)] <- NA; data.frame(x, stringsAsFactors = FALSE) 
           }))
   
-  out <- list(meta = meta, data = dat2)
+  out <- list(success = success, meta = meta, data = dat2)
   class(out) <- "enigma"
   return( out )
 }

@@ -2,6 +2,7 @@
 
 export(enigma_data)
 export(enigma_metadata)
+export(enigma_stats)
 import(RJSONIO)
 import(assertthat)
 import(httr)
