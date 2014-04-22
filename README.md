@@ -1,7 +1,7 @@
 enigma
 =======
 
-[![Build Status](https://api.travis-ci.org/ropensci/enigma.png)](https://travis-ci.org/ropensci/enigma)
+[![Build Status](https://api.travis-ci.org/ropengov/enigma.png)](https://travis-ci.org/ropengov/enigma)
 
 **An R client for [Enigma.io](https://app.enigma.io/)**
 
