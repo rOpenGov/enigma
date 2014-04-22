@@ -8,7 +8,7 @@ enigma_data(dataset = NULL, limit = 50, select = NULL, sort = NULL,
   curlopts = list())
 }
 \arguments{
-\item{dataset}{Dataset name. See the `\code{\link{enigma_}} function}
+\item{dataset}{Dataset name. Required.}
 
 \item{limit}{(numeric) Number of rows of the dataset to return. Default: 50}
 
@@ -22,7 +22,7 @@ ascending order, - denotes descending. See examples.}
 calculated based on the current limit, which defaults to 50.}
 
 \item{where}{(character) Filter results with a SQL-style "where" clause. Only applies to
-numerical columns – use the \code{search} parameter for strings. Valid operators are >, < and =.
+numerical columns - use the \code{search} parameter for strings. Valid operators are >, < and =.
 Only one \code{where} clause per request is currently supported.}
 
 \item{search}{(character) Filter results by only returning rows that match a search query. By
@@ -31,7 +31,7 @@ the query format "@fieldname query". To match multiple queries, the | (or) opera
 eg. "query1|query2".}
 
 \item{key}{(character) An Enigma API key. Supply in the function call, or store in your
-\code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}}
+\code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.}
 
 \item{curlopts}{(list) Curl options passed on to \code{httr::GET}}
 }
@@ -47,6 +47,7 @@ enigma_data(dataset='us.gov.whitehouse.visitor-list', where='total_people > 5')
 enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@namefull=Vitale')
 enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@namefirst=SOPHIA')
 
+# Domestic Market Flight Statistics (Final Destination)
 enigma_data(dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier')
 }
 }

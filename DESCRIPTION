@@ -5,7 +5,7 @@ Version: 0.0.2
 Date: 2014-04-21
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
-License: MIT
+License: MIT + file LICENSE
 LazyData: true
 Roxygen: list(wrap = FALSE)
 Imports:
