@@ -3,7 +3,7 @@ enigma
 
 [![Build Status](https://api.travis-ci.org/ropensci/enigma.png)](https://travis-ci.org/ropensci/enigma)
 
-**A general purpose R interface to [enigma](https://app.enigma.io/)**
+**An R client for [Enigma.io](https://app.enigma.io/)**
 
 ### enigma info
 
@@ -12,7 +12,7 @@ enigma
 
 ### Quick start
 
-**Install**
+#### Install
 
 ```coffee
 install.packages("devtools")
@@ -21,7 +21,7 @@ install_github("ropengov/enigma")
 library("enigma")
 ```
 
-**Get data**
+#### Get data
 
 ```coffee
 out <- enigma_data(dataset='us.gov.whitehouse.visitor-list', select=c('namelast','visitee_namelast','last_updatedby'))
@@ -61,7 +61,7 @@ head(out$data)
 6   VITALE             TING             GB
 ```
 
-**Get statistics on datasets**
+#### Statistics on dataset columns
 
 ```coffee
 out <- enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='total_people')
@@ -110,7 +110,7 @@ head(out$frequency)
 ```
 
 
-**Get metadata**
+#### Metadata on datasets
 
 ```coffee
 out <- enigma_metadata(dataset='us.gov.whitehouse')
