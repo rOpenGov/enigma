@@ -1,7 +1,7 @@
 #' Fetch a dataset from Enigma.
 #' 
-#' @param dataset X
-#' @param limit X
+#' @param dataset Dataset name.
+#' @param limit Number of rows of the dataset to return. Default: 100
 #' @param select X
 #' @param sort X
 #' @param page X
@@ -15,7 +15,7 @@
 #' enigma_data(dataset='us.gov.whitehouse.visitor-list')
 #' }
 
-enigma_data <- function(dataset=NULL, limit=10, select=NULL, sort=NULL, page=NULL, where=NULL, search=NULL, key=NULL)
+enigma_data <- function(dataset=NULL, limit=100, select=NULL, sort=NULL, page=NULL, where=NULL, search=NULL, key=NULL)
 {
   enigma_key <- "9f146ed7308769047ecd7212cdd6f517"
   url <- 'https://api.enigma.io/v2/data/%s/%s'

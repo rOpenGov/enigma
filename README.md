@@ -17,7 +17,7 @@ enigma
 ```coffee
 install.packages("devtools")
 library("devtools")
-install_github("ropensci/enigma")
+install_github("ropengov/enigma")
 library("enigma")
 ```
 
