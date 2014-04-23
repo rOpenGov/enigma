@@ -1,5 +1,8 @@
-#' Fetch a dataset from Enigma.
+#' Get statistics on columns of a dataset from Enigma.
 #' 
+#' @import httr RJSONIO assertthat 
+#' @importFrom plyr rbind.fill
+#' @export
 #' @param dataset Dataset name. Required.
 #' @param select (character) Column to get statistics on. Required.
 #' @param operation (character) Operation to run on a given column. For a numerical column, valid operations 
@@ -27,9 +30,6 @@
 #' @param key (character) An Enigma API key. Supply in the function call, or store in your
 #' \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.
 #' @param curlopts (list) Curl options passed on to \code{httr::GET}
-#' @import httr RJSONIO assertthat 
-#' @importFrom plyr rbind.fill
-#' @export
 #' @examples \dontrun{
 #' # stats on a varchar column
 #' enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='type_of_access')
@@ -43,46 +43,57 @@
 #' # stats on a date column, by the average of a numeric column
 #' enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='release_date', by='avg', 
 #'    of='total_people')
+#' 
+#' # Get frequency of distances traveled, and plot
+#' ## get columns for the air carrier dataset
+#' enigma_metadata('us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier')$columns$table[,c(1:4)]
+#' out <- enigma_stats('us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier', 
+#'    select='distance')
+#' library("ggplot2")
+#' library("ggthemes")
+#' df <- out$result$frequency
+#' df <- data.frame(distance=as.numeric(df$distance), count=as.numeric(df$count))
+#' ggplot(df, aes(distance, count)) + 
+#'  geom_bar(stat="identity") + 
+#'  theme_grey(base_size = 18)
 #' }
 
 enigma_stats <- function(dataset=NULL, select=NULL, operation=NULL, by=NULL, of=NULL, limit=500, 
   search=NULL, where=NULL, sort=NULL, page=NULL, key=NULL, curlopts=list())
 {
   if(is.null(key))
-    key <- getOption("enigmaKey", stop("need an API key for PLoS Journals"))
+    key <- getOption("enigmaKey", stop("need an API key for the Enigma API"))
 
   url <- 'https://api.enigma.io/v2/stats/%s/%s/select/%s'
   url <- sprintf(url, key, dataset, select)
   args <- engigma_compact(list(operation=operation, by=by, of=of, limit=limit, 
                                search=search, where=where, sort=sort, page=page))
   res <- GET(url, query=args, curlopts)
-  stop_for_status(res)
-  assert_that(res$headers$`content-type` == 'application/json; charset=utf-8')
-  dat <- content(res, as = "text", encoding = 'utf-8')
-  json <- fromJSON(dat)
+  json <- error_handler(res)
   
   if(json$info$column$type %in% c('type_numeric','type_date')){
-    sum_stats <- json$result[!names(json$result) %in% 'frequency']
-    freq_stats <- json$result$frequency
-    frequency <- do.call(rbind.fill, lapply(freq_stats, function(z){ 
-        zz <- as.list(z)
-        zz[sapply(zz, is.null)] <- "null"
-        data.frame(zz, stringsAsFactors = FALSE)
-      })
-    )
+    sum_stats <- enigma_stats_dat_parser(json)
   } else if(json$info$column$type %in% 'type_varchar'){
-    sum_stats <- NULL
-    frequency <- do.call(rbind.fill, lapply(json$result$frequency, function(z){ 
-        zz <- as.list(z)
-        zz[sapply(zz, is.null)] <- "null"
-        data.frame(zz, stringsAsFactors = FALSE)
-      })
-    )
-  } else {
-    NULL
+    sum_stats <- enigma_stats_dat_parser(json)
   }
    
-  out <- list(success = json$success, meta = json$info, sum_stats = sum_stats, frequency = frequency)
+  out <- list(success = json$success, datapath = json$datapath, info = json$info, result = sum_stats)
   class(out) <- "enigma_stats"
   return( out )
+}
+
+enigma_stats_dat_parser <- function(x){
+  nn <- names(x$result)
+  res <- lapply(nn, function(z){
+    tmp <- x$result[[z]]
+    if(length(tmp) > 1){
+      do.call(rbind.fill, lapply(tmp, function(w){ 
+        b <- as.list(w)
+        b[sapply(b, is.null)] <- "null"
+        data.frame(b, stringsAsFactors = FALSE)
+      }))
+    } else { tmp }
+  })
+  names(res) <- nn
+  res
 }

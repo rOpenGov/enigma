@@ -1,5 +1,8 @@
 #' Fetch a dataset from Enigma.
 #' 
+#' @import httr RJSONIO assertthat 
+#' @importFrom plyr rbind.fill
+#' @export
 #' @param dataset Dataset name. Required.
 #' @param limit (numeric) Number of rows of the dataset to return. Default: 50
 #' @param select (character) Vector of columns to be returned with each row. Default is to return 
@@ -18,9 +21,6 @@
 #' @param key (character) An Enigma API key. Supply in the function call, or store in your
 #' \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.
 #' @param curlopts (list) Curl options passed on to \code{httr::GET}
-#' @import httr RJSONIO assertthat 
-#' @importFrom plyr rbind.fill
-#' @export
 #' @examples \dontrun{
 #' enigma_data(dataset='us.gov.whitehouse.visitor-list')
 #' enigma_data(dataset='us.gov.whitehouse.visitor-list', select=c('namelast','visitee_namelast','last_updatedby'))
@@ -37,7 +37,7 @@ enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NUL
                         search=NULL, key=NULL, curlopts=list())
 {
   if(is.null(key))
-    key <- getOption("enigmaKey", stop("need an API key for PLoS Journals"))
+    key <- getOption("enigmaKey", stop("need an API key for the Enigma API"))
   
   if(!is.null(select)) select <- paste(select, collapse = ",")
 
