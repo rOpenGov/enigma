@@ -46,19 +46,14 @@ enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NUL
   args <- engigma_compact(list(limit=limit, select=select, sort=sort, page=page, 
                                where=where, search=search))
   res <- GET(url, query=args, curlopts)
-  stop_for_status(res)
-  assert_that(res$headers$`content-type` == 'application/json; charset=utf-8')
-  dat <- content(res, as = "text", encoding = 'utf-8')
-  json <- fromJSON(dat)
-  success <- json$success
+  json <- error_handler(res)
   meta <- json$info
   json$result <- lapply(json$result, as.list)
   dat2 <- do.call(rbind.fill, 
                   lapply(json$result, function(x){ 
                     x[sapply(x, is.null)] <- NA; data.frame(x, stringsAsFactors = FALSE) 
           }))
-  
-  out <- list(success = success, meta = meta, data = dat2)
+  out <- list(success = json$success, datapath = json$datapath, info = meta, result = dat2)
   class(out) <- "enigma"
   return( out )
 }

@@ -33,17 +33,13 @@ enigma_metadata <- function(dataset=NULL, key=NULL, curlopts=list())
   url <- 'https://api.enigma.io/v2/meta/%s/%s'
   url <- sprintf(url, key, dataset)
   res <- GET(url, query=list(), curlopts)
-  stop_for_status(res)
-  assert_that(res$headers$`content-type` == 'application/json; charset=utf-8')
-  dat <- content(res, as = "text", encoding = 'utf-8')
-  json <- fromJSON(dat)
-  success <- json$success
+  json <- error_handler(res)
   meta <- process_meta(json)
   result_names <- names(json$result)
   if(any(result_names %in% "columns")){
-    out <- list(success = success, meta = meta, columns = process_cols(json))
+    out <- list(success = json$success, datapath = json$datapath, info = meta, columns = process_cols(json))
   } else {
-    out <- list(success = success, meta = meta)
+    out <- list(success = json$success, datapath = json$datapath, info = meta)
   }
   class(out) <- "enigma_meta"
   return( out )
