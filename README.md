@@ -5,18 +5,18 @@ enigma
 
 **An R client for [Enigma.io](https://app.enigma.io/)**
 
-### enigma info
+## enigma info
 
 + [enigma home page](https://app.enigma.io/)
 + [API docs](https://app.enigma.io/api)
 
-### LICENSE
+## LICENSE
 
 MIT, see [LICENSE file](https://github.com/rOpenGov/enigma/blob/master/LICENSE) and [MIT text](http://opensource.org/licenses/MIT)
 
-### Quick start
+## Quick start
 
-#### Install
+### Install
 
 ```coffee
 install.packages("devtools")
@@ -25,34 +25,27 @@ install_github("ropengov/enigma")
 library("enigma")
 ```
 
-#### Get data
+### Get data
 
 ```coffee
 out <- enigma_data(dataset='us.gov.whitehouse.visitor-list', select=c('namelast','visitee_namelast','last_updatedby'))
-out$success
-```
-
-Was call successful
-
-```coffee
-[1] TRUE
 ```
 
 Some metadata on the results
 
 ```coffee
-out$meta
+out$info
 ```
 
 ```coffee
 rows_limit total_results   total_pages  current_page 
-       50       3577135         71543             1 
+           50       3577135         71543             1 
 ```
 
 Look at the data, first 6 rows for readme brevity
 
 ```coffee
-head(out$data)
+head(out$result)
 ```
 
 ```coffee
@@ -65,7 +58,7 @@ head(out$data)
 6   VITALE             TING             GB
 ```
 
-#### Statistics on dataset columns
+### Statistics on dataset columns
 
 ```coffee
 out <- enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='total_people')
@@ -74,7 +67,7 @@ out <- enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='total_peop
 Some summary stats
 
 ```coffee
-out$sum_stats
+out$result[c('sum','avg','stddev','variance','min','max')]
 ```
 
 ```coffee
@@ -90,17 +83,17 @@ $stddev
 $variance
 [1] "271201.260532586939"
 
-$max
-[1] "5730"
-
 $min
 [1] "0"
+
+$max
+[1] "5730"
 ```
 
 Frequency details
 
 ```coffee
-head(out$frequency)
+head(out$result$frequency)
 ```
 
 ```coffee
@@ -114,7 +107,7 @@ head(out$frequency)
 ```
 
 
-#### Metadata on datasets
+### Metadata on datasets
 
 ```coffee
 out <- enigma_metadata(dataset='us.gov.whitehouse')
@@ -163,7 +156,7 @@ out$meta$paths
 Immediate nodes
 
 ```coffee
-out$meta$immediate_nodes
+out$info$immediate_nodes
 ```
 
 ```coffee
@@ -181,7 +174,7 @@ out$meta$immediate_nodes
 Children tables
 
 ```coffee
-out$meta$children_tables
+out$info$children_tables
 ```
 
 ```coffee
@@ -201,3 +194,55 @@ out$meta$children_tables
 [[1]]$db_boundary_label
 [1] "The White House"
 ```
+
+### Use case: Plot frequency of flight distances
+
+First, get columns for the air carrier dataset
+
+```coffee
+dset <- 'us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier'
+head(enigma_metadata(dset)$columns$table[,c(1:4)])
+```
+
+```coffee
+              id          label         type index
+1     passengers     Passengers type_varchar     0
+2        freight Freight (Lbs.) type_varchar     1
+3           mail    Mail (Lbs.) type_varchar     2
+4       distance Distance (Mi.) type_varchar     3
+5 unique_carrier Unique Carrier type_varchar     4
+6     airline_id     Airline ID type_numeric     5
+```
+
+Looks like there's a column called _distance_ that we can search on. We by default for `varchar` type columns only `frequency` bake for the column. 
+
+```coffee
+out <- enigma_stats(dset, select='distance')
+head(out$result$frequency)
+```
+
+```coffee
+  distance count
+1     0.00 15648
+2    59.00 12960
+3   296.00 12748
+4    16.00 12570
+5    95.00 11966
+6    94.00 11964    
+```
+
+Then we can do a bit of tidying and make a plot
+
+```coffee
+library("ggplot2")
+library("ggthemes")
+df <- out$result$frequency
+df <- data.frame(distance=as.numeric(df$distance), count=as.numeric(df$count))
+ggplot(df, aes(distance, count)) + 
+  geom_bar(stat="identity") + 
+  geom_point() +
+  theme_grey(base_size = 18) +
+  labs(y="flights", x="distance (miles)")
+```
+
+![](http://f.cl.ly/items/0W1q0i3W0G0e440y2j3X/Screen%20Shot%202014-04-22%20at%206.37.20%20PM.png)
