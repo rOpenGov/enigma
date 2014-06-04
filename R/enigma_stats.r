@@ -29,7 +29,7 @@
 #' the nth page of results. Pages are calculated based on the current limit, which defaults to 500.
 #' @param key (character) An Enigma API key. Supply in the function call, or store in your
 #' \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.
-#' @param curlopts (list) Curl options passed on to \code{httr::GET}
+#' @param ... Named options passed on to \code{httr::GET}
 #' @examples \dontrun{
 #' # stats on a varchar column
 #' enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='type_of_access')
@@ -61,7 +61,7 @@
 #' }
 
 enigma_stats <- function(dataset=NULL, select=NULL, operation=NULL, by=NULL, of=NULL, limit=500, 
-  search=NULL, where=NULL, sort=NULL, page=NULL, key=NULL, curlopts=list())
+  search=NULL, where=NULL, sort=NULL, page=NULL, key=NULL, ...)
 {
   if(is.null(key))
     key <- getOption("enigmaKey", stop("need an API key for the Enigma API"))
@@ -70,7 +70,7 @@ enigma_stats <- function(dataset=NULL, select=NULL, operation=NULL, by=NULL, of=
   url <- sprintf(url, key, dataset, select)
   args <- engigma_compact(list(operation=operation, by=by, of=of, limit=limit, 
                                search=search, where=where, sort=sort, page=page))
-  res <- GET(url, query=args, curlopts)
+  res <- GET(url, query=args, ...)
   json <- error_handler(res)
   
   if(json$info$column$type %in% c('type_numeric','type_date')){

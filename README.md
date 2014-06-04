@@ -1,12 +1,11 @@
 enigma
 =======
 
-
-
-
 [![Build Status](https://api.travis-ci.org/rOpenGov/enigma.png)](https://travis-ci.org/rOpenGov/enigma)
 
 **An R client for [Enigma.io](https://app.enigma.io/)**
+
+Enigma holds government data and provides a really nice set of APIs for data, metadata, and stats on each of the datasets. That is, you can request a dataset itself, metadata on the dataset, and summary statistics on the columns of each dataset.
 
 ## enigma info
 
@@ -39,7 +38,7 @@ library("enigma")
 
 
 ```r
-out <- enigma_data(dataset = "us.gov.whitehouse.visitor-list", select = c("namelast", 
+out <- enigma_data(dataset = "us.gov.whitehouse.visitor-list", select = c("namelast",
     "visitee_namelast", "last_updatedby"))
 ```
 
@@ -52,7 +51,7 @@ out$info
 ```
 
 ```
-##    rows_limit total_results   total_pages  current_page 
+##    rows_limit total_results   total_pages  current_page
 ##            50       3577135         71543             1
 ```
 
@@ -94,19 +93,19 @@ out$result[c("sum", "avg", "stddev", "variance", "min", "max")]
 ```
 ## $sum
 ## [1] "1028567261"
-## 
+##
 ## $avg
 ## [1] "289.0040005540871372"
-## 
+##
 ## $stddev
 ## [1] "520.769872911814"
-## 
+##
 ## $variance
 ## [1] "271201.260532586939"
-## 
+##
 ## $min
 ## [1] "0"
-## 
+##
 ## $max
 ## [1] "5730"
 ```
@@ -140,7 +139,7 @@ out <- enigma_metadata(dataset = "us.gov.whitehouse")
 ```
 
 
-Paths 
+Paths
 
 
 ```r
@@ -151,32 +150,32 @@ out$info$paths
 ## [[1]]
 ## [[1]]$level
 ## [1] "us"
-## 
+##
 ## [[1]]$label
 ## [1] "United States"
-## 
+##
 ## [[1]]$description
 ## [1] "United States"
-## 
-## 
+##
+##
 ## [[2]]
 ## [[2]]$level
 ## [1] "gov"
-## 
+##
 ## [[2]]$label
 ## [1] "U.S. Federal Government"
-## 
+##
 ## [[2]]$description
 ## [1] "Government comprising the Legislative, Executive, and Judicial branches of the United States of America."
-## 
-## 
+##
+##
 ## [[3]]
 ## [[3]]$level
 ## [1] "whitehouse"
-## 
+##
 ## [[3]]$label
 ## [1] "The White House"
-## 
+##
 ## [[3]]$description
 ## [1] "Located at 1600 Pennsylvania Avenue in Washington D.C., the White House has served as the home and office for every U.S. president since John Adams."
 ```
@@ -193,10 +192,10 @@ out$info$immediate_nodes
 ## [[1]]
 ## [[1]]$datapath
 ## [1] "us.gov.whitehouse.salaries"
-## 
+##
 ## [[1]]$label
 ## [1] "White House Salaries"
-## 
+##
 ## [[1]]$description
 ## [1] "The White House report to Congress listing the title and salary of every White House Office employee since 1995."
 ```
@@ -213,16 +212,16 @@ out$info$children_tables[[1]]
 ```
 ## $datapath
 ## [1] "us.gov.whitehouse.nom-and-app"
-## 
+##
 ## $label
 ## [1] "Nominations & Appointments"
-## 
+##
 ## $description
 ## [1] "The nominees and appointees names, positions, agencies under which they are nominated or appointed, the agency's websites, nomination dates, and vote confirmation dates."
-## 
+##
 ## $db_boundary_datapath
 ## [1] "us.gov.whitehouse"
-## 
+##
 ## $db_boundary_label
 ## [1] "The White House"
 ```
@@ -251,7 +250,7 @@ head(enigma_metadata(dset)$columns$table[, c(1:4)])
 
 
 
-Looks like there's a column called _distance_ that we can search on. We by default for `varchar` type columns only `frequency` bake for the column. 
+Looks like there's a column called _distance_ that we can search on. We by default for `varchar` type columns only `frequency` bake for the column.
 
 
 ```r
@@ -278,12 +277,11 @@ library("ggplot2")
 library("ggthemes")
 df <- out$result$frequency
 df <- data.frame(distance=as.numeric(df$distance), count=as.numeric(df$count))
-ggplot(df, aes(distance, count)) + 
-  geom_bar(stat="identity") + 
+ggplot(df, aes(distance, count)) +
+  geom_bar(stat="identity") +
   geom_point() +
   theme_grey(base_size = 18) +
   labs(y="flights", x="distance (miles)")
 ```
 
-![plot of chunk unnamed-chunk-16](inst/assets/figure/unnamed-chunk-16.png) 
-
+![plot of chunk unnamed-chunk-16](inst/assets/figure/unnamed-chunk-16.png)

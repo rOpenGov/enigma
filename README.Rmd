@@ -9,6 +9,8 @@ opts_chunk$set(fig.width=8, fig.pos="h", fig.path="inst/assets/figure/")
 
 **An R client for [Enigma.io](https://app.enigma.io/)**
 
+Enigma holds government data and provides a really nice set of APIs for data, metadata, and stats on each of the datasets. That is, you can request a dataset itself, metadata on the dataset, and summary statistics on the columns of each dataset.
+
 ## enigma info
 
 + [enigma home page](https://app.enigma.io/)
@@ -77,7 +79,7 @@ head(out$result$frequency)
 out <- enigma_metadata(dataset='us.gov.whitehouse')
 ```
 
-Paths 
+Paths
 
 ```{r}
 out$info$paths
@@ -107,7 +109,7 @@ head(enigma_metadata(dset)$columns$table[,c(1:4)])
 ```
 
 
-Looks like there's a column called _distance_ that we can search on. We by default for `varchar` type columns only `frequency` bake for the column. 
+Looks like there's a column called _distance_ that we can search on. We by default for `varchar` type columns only `frequency` bake for the column.
 
 ```{r}
 out <- enigma_stats(dset, select='distance')
@@ -121,8 +123,8 @@ library("ggplot2")
 library("ggthemes")
 df <- out$result$frequency
 df <- data.frame(distance=as.numeric(df$distance), count=as.numeric(df$count))
-ggplot(df, aes(distance, count)) + 
-  geom_bar(stat="identity") + 
+ggplot(df, aes(distance, count)) +
+  geom_bar(stat="identity") +
   geom_point() +
   theme_grey(base_size = 18) +
   labs(y="flights", x="distance (miles)")

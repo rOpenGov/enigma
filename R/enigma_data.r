@@ -20,21 +20,23 @@
 #' eg. "query1|query2".
 #' @param key (character) An Enigma API key. Supply in the function call, or store in your
 #' \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.
-#' @param curlopts (list) Curl options passed on to \code{httr::GET}
+#' @param ... Named options passed on to \code{httr::GET}
 #' @examples \dontrun{
 #' enigma_data(dataset='us.gov.whitehouse.visitor-list')
-#' enigma_data(dataset='us.gov.whitehouse.visitor-list', select=c('namelast','visitee_namelast','last_updatedby'))
+#' enigma_data(dataset='us.gov.whitehouse.visitor-list', select=c('namelast','visitee_namelast',
+#' 'last_updatedby'))
 #' enigma_data(dataset='us.gov.whitehouse.visitor-list', sort='+namelast')
 #' enigma_data(dataset='us.gov.whitehouse.visitor-list', where='total_people > 5')
 #' enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@@namefull=Vitale')
 #' enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@@namefirst=SOPHIA')
 #' 
 #' # Domestic Market Flight Statistics (Final Destination)
-#' enigma_data(dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier')
+#' dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier'
+#' enigma_data(dataset=dataset)
 #' }
 
 enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NULL, where=NULL, 
-                        search=NULL, key=NULL, curlopts=list())
+                        search=NULL, key=NULL, ...)
 {
   if(is.null(key))
     key <- getOption("enigmaKey", stop("need an API key for the Enigma API"))
@@ -45,7 +47,7 @@ enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NUL
   url <- sprintf(url, key, dataset)
   args <- engigma_compact(list(limit=limit, select=select, sort=sort, page=page, 
                                where=where, search=search))
-  res <- GET(url, query=args, curlopts)
+  res <- GET(url, query=args, ...)
   json <- error_handler(res)
   meta <- json$info
   json$result <- lapply(json$result, as.list)
