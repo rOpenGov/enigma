@@ -67,16 +67,18 @@ enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='release_date', by
 
 # Get frequency of distances traveled, and plot
 ## get columns for the air carrier dataset
-enigma_metadata('us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier')$columns$table[,c(1:4)]
-out <- enigma_stats('us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier',
-   select='distance')
+dset <- 'us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier'
+enigma_metadata(dset)$columns$table[,c(1:4)]
+out <- enigma_stats(dset, select='distance')
 library("ggplot2")
 library("ggthemes")
 df <- out$result$frequency
 df <- data.frame(distance=as.numeric(df$distance), count=as.numeric(df$count))
 ggplot(df, aes(distance, count)) +
  geom_bar(stat="identity") +
- theme_grey(base_size = 18)
+ geom_point() +
+ theme_grey(base_size = 18) +
+ labs(y="flights", x="distance (miles)")
 }
 }
 
