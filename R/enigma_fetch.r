@@ -1,0 +1,39 @@
+#' Get statistics on columns of a dataset from Enigma.
+#' 
+#' @export
+#' 
+#' @param dataset Dataset name. Required.
+#' @param key (character) An Enigma API key. Supply in the function call, or store in your
+#' \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.
+#' @param ... Named options passed on to \code{httr::GET}
+#' 
+#' @examples \dontrun{
+#' enigma_fetch(dataset='com.crunchbase.info.companies.acquisition')
+#' 
+#' library('httr')
+#' enigma_fetch(dataset='com.crunchbase.info.companies.acquisition', config=verbose())
+#' }
+
+enigma_fetch <- function(dataset=NULL, output=NULL, key=NULL, ...)
+{
+  check_key(key)
+  check_dataset(dataset)
+  
+  url <- 'https://api.enigma.io/v2/export/%s/%s'
+  url <- sprintf(url, key, dataset)
+  res <- GET(url, ...)
+  json <- error_handler(res)
+  if(is.null(output)) output <- file.path(Sys.getenv('HOME'), parse_url(json$export_url)$path)
+  bin <- GET(json$export_url)
+  writeBin(content(bin), output)
+  message(sprintf("\nzip file written to\n%s", output))
+}
+
+check_dataset <- function(dataset){
+  if(is.null(dataset)) stop("You must provide a dataset")
+}
+
+check_key <- function(x){
+  if(is.null(x))
+    key <<- getOption("enigmaKey", stop("need an API key for the Enigma API"))
+}
