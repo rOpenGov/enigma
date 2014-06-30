@@ -69,7 +69,9 @@ enigma_stats <- function(dataset=NULL, select=NULL, operation=NULL, by=NULL, of=
 {
   if(is.null(key))
     key <- getOption("enigmaKey", stop("need an API key for the Enigma API"))
-
+  if(is.null(dataset))
+    stop("You must provide a dataset")
+  
   url <- 'https://api.enigma.io/v2/stats/%s/%s/select/%s'
   url <- sprintf(url, key, dataset, select)
   args <- engigma_compact(list(operation=operation, by=by, of=of, limit=limit, 

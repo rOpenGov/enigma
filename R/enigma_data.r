@@ -44,6 +44,8 @@ enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NUL
 {
   if(is.null(key))
     key <- getOption("enigmaKey", stop("need an API key for the Enigma API"))
+  if(is.null(dataset))
+    stop("You must provide a dataset")
   
   if(!is.null(select)) select <- paste(select, collapse = ",")
 
