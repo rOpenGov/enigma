@@ -32,17 +32,21 @@
 #' @param ... Named options passed on to \code{httr::GET}
 #' @examples \dontrun{
 #' # stats on a varchar column
-#' enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='type_of_access')
+#' cbase <- 'com.crunchbase.info.companies.acquisition'
+#' enigma_stats(dataset=cbase, select='acquired_month')
 #' 
 #' # stats on a numeric column
-#' enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='total_people')
+#' enigma_stats(dataset=whvis, select='price_amount')
 #' 
 #' # stats on a date column
-#' enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='release_date')
+#' pakistan <- 'gov.pk.secp.business-registry.all-entities'
+#' enigma_metadata(dataset=pakistan)
+#' enigma_stats(dataset=pakistan, select='registration_date')
 #' 
 #' # stats on a date column, by the average of a numeric column
-#' enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='release_date', by='avg', 
-#'    of='total_people')
+#' aust <- 'gov.au.government-spending.federal-contracts'
+#' enigma_metadata(dataset=aust)
+#' enigma_stats(dataset=aust, select='contractstart', by='avg', of='value')
 #' 
 #' # Get frequency of distances traveled, and plot
 #' ## get columns for the air carrier dataset
@@ -73,11 +77,11 @@ enigma_stats <- function(dataset=NULL, select=NULL, operation=NULL, by=NULL, of=
   res <- GET(url, query=args, ...)
   json <- error_handler(res)
   
-  if(json$info$column$type %in% c('type_numeric','type_date')){
+#   if(json$info$column$type %in% c('type_numeric','type_date')){
+#     sum_stats <- enigma_stats_dat_parser(json)
+#   } else if(json$info$column$type %in% 'type_varchar'){
     sum_stats <- enigma_stats_dat_parser(json)
-  } else if(json$info$column$type %in% 'type_varchar'){
-    sum_stats <- enigma_stats_dat_parser(json)
-  }
+#   }
    
   out <- list(success = json$success, datapath = json$datapath, info = json$info, result = sum_stats)
   class(out) <- "enigma_stats"

@@ -33,6 +33,10 @@
 #' # Domestic Market Flight Statistics (Final Destination)
 #' dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier'
 #' enigma_data(dataset=dataset)
+#' 
+#' # Search for 'apple' in the Crunchbase dataset
+#' enigma_data(dataset='com.crunchbase.info.companies.acquisition', search='apple', 
+#' select=c('acquisition','price_amount'))
 #' }
 
 enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NULL, where=NULL, 
