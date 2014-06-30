@@ -3,6 +3,8 @@
 #' @export
 #' 
 #' @param dataset Dataset name. Required.
+#' @param output File name and path of output zip file. Defaults to write a zip file to your home
+#' directory with name of the dataset.
 #' @param key (character) An Enigma API key. Supply in the function call, or store in your
 #' \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.
 #' @param ... Named options passed on to \code{httr::GET}
@@ -16,7 +18,7 @@
 
 enigma_fetch <- function(dataset=NULL, output=NULL, key=NULL, ...)
 {
-  check_key(key)
+  key <- check_key(key)
   check_dataset(dataset)
   
   url <- 'https://api.enigma.io/v2/export/%s/%s'
@@ -34,6 +36,5 @@ check_dataset <- function(dataset){
 }
 
 check_key <- function(x){
-  if(is.null(x))
-    key <<- getOption("enigmaKey", stop("need an API key for the Enigma API"))
+  if(is.null(x)) getOption("enigmaKey", stop("need an API key for the Enigma API")) else x
 }

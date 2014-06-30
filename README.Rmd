@@ -129,3 +129,13 @@ ggplot(df, aes(distance, count)) +
   theme_grey(base_size = 18) +
   labs(y="flights", x="distance (miles)")
 ```
+
+### Direct dataset download
+
+Enigma provides an endpoint `.../export/<datasetid>` to download a zipped csv file of the entire dataset.
+
+`enigma_fetch()` gives you an easy way to download these to a specific place on your machine. And a message tells you that a file has been written to disk.
+
+```r
+enigma_fetch(dataset='com.crunchbase.info.companies.acquisition')
+```

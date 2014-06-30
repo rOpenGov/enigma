@@ -8,6 +8,9 @@ enigma_fetch(dataset = NULL, output = NULL, key = NULL, ...)
 \arguments{
 \item{dataset}{Dataset name. Required.}
 
+\item{output}{File name and path of output zip file. Defaults to write a zip file to your home
+directory with name of the dataset.}
+
 \item{key}{(character) An Enigma API key. Supply in the function call, or store in your
 \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.}
 

@@ -285,3 +285,22 @@ ggplot(df, aes(distance, count)) +
 ```
 
 ![plot of chunk unnamed-chunk-16](inst/assets/figure/unnamed-chunk-16.png)
+
+
+### Direct dataset download
+
+Enigma provides an endpoint `.../export/<datasetid>` to download a zipped csv file of the entire dataset.
+
+`enigma_fetch()` gives you an easy way to download these to a specific place on your machine.
+
+```r
+enigma_fetch(dataset='com.crunchbase.info.companies.acquisition')
+```
+
+And a message tells you that a file has been written to disk.
+
+```r
+
+zip file written to
+/Users/sacmac/enigma-com-crunchbase-info-companies-acquisition-c610f13ccda70c8051f1aa611766847b.zip
+```
