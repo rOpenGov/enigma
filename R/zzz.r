@@ -13,6 +13,11 @@ error_handler <- function(x){
   jsonlite::fromJSON(dat, FALSE)
 }
 
+enigma_GET <- function(url, args, ...){
+  res <- GET(url, query=args, ...)
+  error_handler(res)
+}
+
 check_dataset <- function(dataset){
   if(is.null(dataset)) stop("You must provide a dataset")
 }

@@ -74,14 +74,8 @@ enigma_stats <- function(dataset=NULL, select=NULL, operation=NULL, by=NULL, of=
   url <- sprintf('%s/stats/%s/%s/select/%s', en_base(), key, dataset, select)
   args <- engigma_compact(list(operation=operation, by=by, of=of, limit=limit, 
                                search=search, where=where, sort=sort, page=page))
-  res <- GET(url, query=args, ...)
-  json <- error_handler(res)
-  
-#   if(json$info$column$type %in% c('type_numeric','type_date')){
-#     sum_stats <- enigma_stats_dat_parser(json)
-#   } else if(json$info$column$type %in% 'type_varchar'){
-    sum_stats <- enigma_stats_dat_parser(json)
-#   }   
+  json <- enigma_GET(url, args, ...)
+  sum_stats <- enigma_stats_dat_parser(json)
   structure(list(success = json$success, datapath = json$datapath, info = json$info, result = sum_stats), class="enigma_stats")
 }
 

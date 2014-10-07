@@ -30,8 +30,7 @@ enigma_metadata <- function(dataset=NULL, key=NULL, ...)
   check_dataset(dataset)
 
   url <- sprintf('%s/meta/%s/%s', en_base(), key, dataset)
-  res <- GET(url, query=list(), ...)
-  json <- error_handler(res)
+  json <- enigma_GET(url, list(), ...)
   meta <- process_meta(json)
   result_names <- names(json$result)
   if(any(result_names %in% "columns")){

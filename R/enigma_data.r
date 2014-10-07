@@ -48,8 +48,7 @@ enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NUL
   url <- sprintf('%s/data/%s/%s', en_base(), key, dataset)
   args <- engigma_compact(list(limit=limit, select=select, sort=sort, page=page, 
                                where=where, search=search))
-  res <- GET(url, query=args, ...)
-  json <- error_handler(res)
+  json <- enigma_GET(url, args, ...)
   meta <- json$info
   json$result <- lapply(json$result, as.list)
   dat2 <- do.call(rbind.fill, 
