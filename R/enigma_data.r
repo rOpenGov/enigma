@@ -42,15 +42,12 @@
 enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NULL, where=NULL, 
                         search=NULL, key=NULL, ...)
 {
-  if(is.null(key))
-    key <- getOption("enigmaKey", stop("need an API key for the Enigma API"))
-  if(is.null(dataset))
-    stop("You must provide a dataset")
-  
+  key <- check_key(key)
+  check_dataset(dataset)
   if(!is.null(select)) select <- paste(select, collapse = ",")
 
-  url <- 'https://api.enigma.io/v2/data/%s/%s'
-  url <- sprintf(url, key, dataset)
+  url <- '%s/data/%s/%s'
+  url <- sprintf(url, en_base(), key, dataset)
   args <- engigma_compact(list(limit=limit, select=select, sort=sort, page=page, 
                                where=where, search=search))
   res <- GET(url, query=args, ...)
@@ -60,8 +57,6 @@ enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NUL
   dat2 <- do.call(rbind.fill, 
                   lapply(json$result, function(x){ 
                     x[sapply(x, is.null)] <- NA; data.frame(x, stringsAsFactors = FALSE) 
-          }))
-  out <- list(success = json$success, datapath = json$datapath, info = meta, result = dat2)
-  class(out) <- "enigma"
-  return( out )
+                  }))
+  structure(list(success = json$success, datapath = json$datapath, info = meta, result = dat2), class="enigma")
 }

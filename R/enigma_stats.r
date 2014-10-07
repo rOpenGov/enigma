@@ -67,13 +67,11 @@
 enigma_stats <- function(dataset=NULL, select=NULL, operation=NULL, by=NULL, of=NULL, limit=500, 
   search=NULL, where=NULL, sort=NULL, page=NULL, key=NULL, ...)
 {
-  if(is.null(key))
-    key <- getOption("enigmaKey", stop("need an API key for the Enigma API"))
-  if(is.null(dataset))
-    stop("You must provide a dataset")
+  key <- check_key(key)
+  check_dataset(dataset)
   
-  url <- 'https://api.enigma.io/v2/stats/%s/%s/select/%s'
-  url <- sprintf(url, key, dataset, select)
+  url <- '%s/stats/%s/%s/select/%s'
+  url <- sprintf(url, en_base(), key, dataset, select)
   args <- engigma_compact(list(operation=operation, by=by, of=of, limit=limit, 
                                search=search, where=where, sort=sort, page=page))
   res <- GET(url, query=args, ...)
@@ -83,11 +81,8 @@ enigma_stats <- function(dataset=NULL, select=NULL, operation=NULL, by=NULL, of=
 #     sum_stats <- enigma_stats_dat_parser(json)
 #   } else if(json$info$column$type %in% 'type_varchar'){
     sum_stats <- enigma_stats_dat_parser(json)
-#   }
-   
-  out <- list(success = json$success, datapath = json$datapath, info = json$info, result = sum_stats)
-  class(out) <- "enigma_stats"
-  return( out )
+#   }   
+  structure(list(success = json$success, datapath = json$datapath, info = json$info, result = sum_stats), class="enigma_stats")
 }
 
 enigma_stats_dat_parser <- function(x){

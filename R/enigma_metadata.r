@@ -27,13 +27,11 @@
 
 enigma_metadata <- function(dataset=NULL, key=NULL, ...)
 {
-  if(is.null(key))
-    key <- getOption("enigmaKey", stop("need an API key for the Enigma API"))
-  if(is.null(dataset))
-    stop("You must provide a dataset")
+  key <- check_key(key)
+  check_dataset(dataset)
 
-  url <- 'https://api.enigma.io/v2/meta/%s/%s'
-  url <- sprintf(url, key, dataset)
+  url <- '%s/meta/%s/%s'
+  url <- sprintf(url, en_base(), key, dataset)
   res <- GET(url, query=list(), ...)
   json <- error_handler(res)
   meta <- process_meta(json)
@@ -43,8 +41,7 @@ enigma_metadata <- function(dataset=NULL, key=NULL, ...)
   } else {
     out <- list(success = json$success, datapath = json$datapath, info = meta)
   }
-  class(out) <- "enigma_meta"
-  return( out )
+  structure(out, class="enigma_meta")
 }
 
 process_meta <- function(x){

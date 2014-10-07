@@ -21,20 +21,12 @@ enigma_fetch <- function(dataset=NULL, output=NULL, key=NULL, ...)
   key <- check_key(key)
   check_dataset(dataset)
   
-  url <- 'https://api.enigma.io/v2/export/%s/%s'
-  url <- sprintf(url, key, dataset)
+  url <- '%s/export/%s/%s'
+  url <- sprintf(url, en_base(), key, dataset)
   res <- GET(url, ...)
   json <- error_handler(res)
   if(is.null(output)) output <- file.path(Sys.getenv('HOME'), parse_url(json$export_url)$path)
   bin <- GET(json$export_url)
   writeBin(content(bin), output)
   message(sprintf("\nzip file written to\n%s", output))
-}
-
-check_dataset <- function(dataset){
-  if(is.null(dataset)) stop("You must provide a dataset")
-}
-
-check_key <- function(x){
-  if(is.null(x)) getOption("enigmaKey", stop("need an API key for the Enigma API")) else x
 }
