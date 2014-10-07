@@ -1,6 +1,6 @@
 #' Fetch a dataset from Enigma.
 #' 
-#' @import httr RJSONIO assertthat 
+#' @import httr RJSONIO
 #' @importFrom plyr rbind.fill
 #' @export
 #' @param dataset Dataset name. Required.

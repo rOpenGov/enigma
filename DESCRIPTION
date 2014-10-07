@@ -11,5 +11,4 @@ Roxygen: list(wrap = FALSE)
 Imports:
     httr,
     RJSONIO,
-    assertthat,
     plyr

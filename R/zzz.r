@@ -8,7 +8,7 @@ error_handler <- function(x){
   if(x$status_code %in% c(400,500)){
     stop(sprintf("%s : %s", res_info$message, gsub('\"', "'", res_info$additional)), call. = FALSE)
   }
-  assert_that(x$headers$`content-type` == 'application/json; charset=utf-8')
+  stopifnot(x$headers$`content-type` == 'application/json; charset=utf-8')
   dat <- content(x, as = "text", encoding = 'utf-8')
   fromJSON(dat)
 }

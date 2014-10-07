@@ -1,6 +1,6 @@
 #' Get statistics on columns of a dataset from Enigma.
 #' 
-#' @import httr RJSONIO assertthat 
+#' @import httr RJSONIO
 #' @importFrom plyr rbind.fill
 #' @export
 #' @param dataset Dataset name. Required.
@@ -36,7 +36,7 @@
 #' enigma_stats(dataset=cbase, select='acquired_month')
 #' 
 #' # stats on a numeric column
-#' enigma_stats(dataset=whvis, select='price_amount')
+#' enigma_stats(dataset=cbase, select='price_amount')
 #' 
 #' # stats on a date column
 #' pakistan <- 'gov.pk.secp.business-registry.all-entities'
