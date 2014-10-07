@@ -12,3 +12,13 @@ error_handler <- function(x){
   dat <- content(x, as = "text", encoding = 'utf-8')
   fromJSON(dat)
 }
+
+check_dataset <- function(dataset){
+  if(is.null(dataset)) stop("You must provide a dataset")
+}
+
+check_key <- function(x){
+  if(is.null(x)) getOption("enigmaKey", stop("need an API key for the Enigma API")) else x
+}
+
+en_base <- function() 'https://api.enigma.io/v2'
