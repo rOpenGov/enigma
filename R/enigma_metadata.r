@@ -21,7 +21,7 @@
 #' enigma_metadata(dataset='us.gov.whitehouse.visitor-list')
 #' 
 #' ## Domestic Market Flight Statistics (Final Destination)
-#' enigma_metadata(dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier')
+#' enigma_metadata('us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier')
 #' }
 
 enigma_metadata <- function(dataset=NULL, key=NULL, ...)
