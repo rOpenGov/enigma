@@ -5,7 +5,7 @@
 #' @param dataset Dataset name. Required.
 #' @param key (character) An Enigma API key. Supply in the function call, or store in your
 #' \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}
-#' @param ... Named options passed on to \code{httr::GET}
+#' @param ... Named options passed on to \code{\link[httr]{GET}}
 #' @details Notice when you run the examples that the format of output is different for the 
 #' "parent nodes" vs. the "table nodes". Where the parent nodes have ouput$meta slots for 
 #' paths, immediate nodes and children tables, while the table nodes have ouput$meta slots for 

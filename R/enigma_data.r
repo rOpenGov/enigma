@@ -19,7 +19,7 @@
 #' eg. "query1|query2".
 #' @param key (character) An Enigma API key. Supply in the function call, or store in your
 #' \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.
-#' @param ... Named options passed on to \code{httr::GET}
+#' @param ... Named options passed on to \code{\link[httr]{GET}}
 #' @examples \dontrun{
 #' enigma_data(dataset='us.gov.whitehouse.visitor-list')
 #' enigma_data(dataset='us.gov.whitehouse.visitor-list', select=c('namelast','visitee_namelast',

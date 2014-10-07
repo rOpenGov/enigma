@@ -32,7 +32,7 @@ eg. "query1|query2".}
 \item{key}{(character) An Enigma API key. Supply in the function call, or store in your
 \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.}
 
-\item{...}{Named options passed on to \code{httr::GET}}
+\item{...}{Named options passed on to \code{\link[httr]{GET}}}
 }
 \description{
 Fetch a dataset from Enigma.

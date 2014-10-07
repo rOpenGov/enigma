@@ -19,7 +19,7 @@ enigma_GET <- function(url, args, ...){
 }
 
 check_dataset <- function(dataset){
-  if(is.null(dataset)) stop("You must provide a dataset")
+  if(is.null(dataset)) stop("You must provide a dataset") else dataset
 }
 
 check_key <- function(x){

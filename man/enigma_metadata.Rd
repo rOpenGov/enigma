@@ -11,7 +11,7 @@ enigma_metadata(dataset = NULL, key = NULL, ...)
 \item{key}{(character) An Enigma API key. Supply in the function call, or store in your
 \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}}
 
-\item{...}{Named options passed on to \code{httr::GET}}
+\item{...}{Named options passed on to \code{\link[httr]{GET}}}
 }
 \description{
 Search for metadata on a dataset from Enigma.

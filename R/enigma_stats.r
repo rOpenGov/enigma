@@ -3,7 +3,9 @@
 #' @import httr
 #' @importFrom jsonlite fromJSON
 #' @importFrom plyr rbind.fill
+#' 
 #' @export
+#' 
 #' @param dataset Dataset name. Required.
 #' @param select (character) Column to get statistics on. Required.
 #' @param operation (character) Operation to run on a given column. For a numerical column, valid operations 
@@ -30,7 +32,7 @@
 #' the nth page of results. Pages are calculated based on the current limit, which defaults to 500.
 #' @param key (character) An Enigma API key. Supply in the function call, or store in your
 #' \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.
-#' @param ... Named options passed on to \code{httr::GET}
+#' @param ... Named options passed on to \code{\link[httr]{GET}}
 #' @examples \dontrun{
 #' # stats on a varchar column
 #' cbase <- 'com.crunchbase.info.companies.acquisition'

@@ -45,7 +45,7 @@ the nth page of results. Pages are calculated based on the current limit, which 
 \item{key}{(character) An Enigma API key. Supply in the function call, or store in your
 \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.}
 
-\item{...}{Named options passed on to \code{httr::GET}}
+\item{...}{Named options passed on to \code{\link[httr]{GET}}}
 }
 \description{
 Get statistics on columns of a dataset from Enigma.
