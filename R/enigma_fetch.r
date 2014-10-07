@@ -21,8 +21,7 @@ enigma_fetch <- function(dataset=NULL, output=NULL, key=NULL, ...)
   key <- check_key(key)
   check_dataset(dataset)
   
-  url <- '%s/export/%s/%s'
-  url <- sprintf(url, en_base(), key, dataset)
+  url <- sprintf('%s/export/%s/%s', en_base(), key, dataset)
   res <- GET(url, ...)
   json <- error_handler(res)
   if(is.null(output)) output <- file.path(Sys.getenv('HOME'), parse_url(json$export_url)$path)

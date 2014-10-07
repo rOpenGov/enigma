@@ -45,8 +45,7 @@ enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NUL
   check_dataset(dataset)
   if(!is.null(select)) select <- paste(select, collapse = ",")
 
-  url <- '%s/data/%s/%s'
-  url <- sprintf(url, en_base(), key, dataset)
+  url <- sprintf('%s/data/%s/%s', en_base(), key, dataset)
   args <- engigma_compact(list(limit=limit, select=select, sort=sort, page=page, 
                                where=where, search=search))
   res <- GET(url, query=args, ...)

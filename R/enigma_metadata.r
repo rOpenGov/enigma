@@ -29,8 +29,7 @@ enigma_metadata <- function(dataset=NULL, key=NULL, ...)
   key <- check_key(key)
   check_dataset(dataset)
 
-  url <- '%s/meta/%s/%s'
-  url <- sprintf(url, en_base(), key, dataset)
+  url <- sprintf('%s/meta/%s/%s', en_base(), key, dataset)
   res <- GET(url, query=list(), ...)
   json <- error_handler(res)
   meta <- process_meta(json)

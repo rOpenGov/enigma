@@ -71,8 +71,7 @@ enigma_stats <- function(dataset=NULL, select=NULL, operation=NULL, by=NULL, of=
   key <- check_key(key)
   check_dataset(dataset)
   
-  url <- '%s/stats/%s/%s/select/%s'
-  url <- sprintf(url, en_base(), key, dataset, select)
+  url <- sprintf('%s/stats/%s/%s/select/%s', en_base(), key, dataset, select)
   args <- engigma_compact(list(operation=operation, by=by, of=of, limit=limit, 
                                search=search, where=where, sort=sort, page=page))
   res <- GET(url, query=args, ...)
