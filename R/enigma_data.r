@@ -1,8 +1,7 @@
 #' Fetch a dataset from Enigma.
 #' 
-#' @import httr RJSONIO
-#' @importFrom plyr rbind.fill
 #' @export
+#' 
 #' @param dataset Dataset name. Required.
 #' @param limit (numeric) Number of rows of the dataset to return. Default: 50
 #' @param select (character) Vector of columns to be returned with each row. Default is to return 

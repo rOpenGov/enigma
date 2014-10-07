@@ -10,5 +10,5 @@ LazyData: true
 Roxygen: list(wrap = FALSE)
 Imports:
     httr,
-    RJSONIO,
+    jsonlite,
     plyr

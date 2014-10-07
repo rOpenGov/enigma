@@ -1,6 +1,7 @@
 #' Get statistics on columns of a dataset from Enigma.
 #' 
-#' @import httr RJSONIO
+#' @import httr
+#' @importFrom jsonlite fromJSON
 #' @importFrom plyr rbind.fill
 #' @export
 #' @param dataset Dataset name. Required.

@@ -10,7 +10,7 @@ error_handler <- function(x){
   }
   stopifnot(x$headers$`content-type` == 'application/json; charset=utf-8')
   dat <- content(x, as = "text", encoding = 'utf-8')
-  fromJSON(dat)
+  jsonlite::fromJSON(dat, FALSE)
 }
 
 check_dataset <- function(dataset){
