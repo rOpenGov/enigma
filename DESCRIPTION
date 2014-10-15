@@ -1,6 +1,9 @@
 Package: enigma
-Title: R interface to the Enigma.io API
-Description: R interface to the Enigma.io API
+Title: R Client for the Enigma.io API
+Description: Interact with the Enigma.io API from R, including getting the data
+    and metadata for datasets in Enigma, as well as collecting statistics on
+    datasets. In addition, you can download a gzipped csv file of a dataset if
+    you want the whole dataset. An API key is required to use enigma.
 Version: 0.0.9.99
 Date: 2014-10-15
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
