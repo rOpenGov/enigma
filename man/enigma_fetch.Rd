@@ -2,7 +2,7 @@
 \name{enigma_fetch}
 \alias{enigma_fetch}
 \alias{enigma_read}
-\title{Get statistics on columns of a dataset from Enigma.}
+\title{Download a gzipped csv file of a dataset.}
 \usage{
 enigma_fetch(dataset = NULL, path = NULL, overwrite = TRUE, key = NULL,
   ...)
@@ -25,7 +25,7 @@ directory with name of the dataset, and file extension \code{.csv.gz}.}
 \item{input}{The output from \code{enigma_fetch} or a path to a file downloaded from Enigma.io}
 }
 \description{
-Get statistics on columns of a dataset from Enigma.
+Download a gzipped csv file of a dataset.
 }
 \examples{
 \dontrun{

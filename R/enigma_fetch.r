@@ -1,4 +1,4 @@
-#' Get statistics on columns of a dataset from Enigma.
+#' Download a gzipped csv file of a dataset.
 #' 
 #' @export
 #' 
