@@ -1,16 +1,20 @@
 #' enigma, an R client for Enigma.io
 #'
-#' Enigma holds government data and provides a really nice set of APIs for data, metadata, and stats on each of the datasets. That is, you can request a dataset itself, metadata on the dataset, and summary statistics on the columns of each dataset.
+#' Enigma holds government data and provides a really nice set of APIs for data, metadata, and 
+#' stats on each of the datasets. That is, you can request a dataset itself, metadata on the 
+#' dataset, and summary statistics on the columns of each dataset.
 #'
-#' There are currently three functions
+#' There functions:
 #'
 #' \itemize{
-#'  \item enigma_data - Fetch and dataset, and filter on columns or rows.
-#'  \item enigma_metadata - Get metadata on datasets.
-#'  \item enigma_stats - Get columnwise statistics on datasets.
+#'  \item \code{\link[enigma]{enigma_data}} - Fetch and dataset, and filter on columns or rows.
+#'  \item \code{\link[enigma]{enigma_metadata}} - Get metadata on datasets.
+#'  \item \code{\link[enigma]{enigma_stats}} - Get columnwise statistics on datasets.
+#'  \item \code{\link[enigma]{enigma_fetch}} - Get gzipped csv of a dataset. Goes along with 
+#'  \code{\link[enigma]{enigma_read}}
+#'  \item \code{\link[enigma]{rate_limit}} - Get columnwise statistics on datasets.
 #' }
 #'
-#' @name enigma-package
-#' @aliases enigma
+#' @name enigma
 #' @docType package
 NULL
