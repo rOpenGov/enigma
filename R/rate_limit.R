@@ -5,7 +5,7 @@
 #' @param key (character) An Enigma API key. Supply in the function call, or store in your
 #' \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.
 #' @param ... Named options passed on to \code{\link[httr]{GET}}
-#' @examples \dontrun{
+#' @examples \donttest{
 #' rate_limit()
 #' }
 

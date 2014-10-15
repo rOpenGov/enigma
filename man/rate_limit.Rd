@@ -15,7 +15,7 @@ rate_limit(key = NULL, ...)
 Get rate limit data.
 }
 \examples{
-\dontrun{
+\donttest{
 rate_limit()
 }
 }
