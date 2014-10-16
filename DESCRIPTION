@@ -11,8 +11,9 @@ Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
 License: MIT + file LICENSE
 LazyData: true
 Roxygen: list(wrap = FALSE)
-Imports: 
+Imports:
     httr,
     jsonlite,
     plyr
-Suggests: testthat
+Suggests:
+    testthat
