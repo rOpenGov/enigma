@@ -38,7 +38,7 @@ eg. "query1|query2".}
 Fetch a dataset from Enigma.
 }
 \examples{
-\dontrun{
+\donttest{
 enigma_data(dataset='us.gov.whitehouse.visitor-list')
 enigma_data(dataset='us.gov.whitehouse.visitor-list', select=c('namelast','visitee_namelast',
 'last_updatedby'))

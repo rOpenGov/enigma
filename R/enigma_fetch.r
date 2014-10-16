@@ -1,7 +1,7 @@
 #' Download a gzipped csv file of a dataset.
-#' 
+#'
 #' @export
-#' 
+#'
 #' @param dataset Dataset name. Required.
 #' @param path File name and path of output zip file. Defaults to write a zip file to your home
 #' directory with name of the dataset, and file extension \code{.csv.gz}.
@@ -9,17 +9,17 @@
 #' @param key (character) An Enigma API key. Supply in the function call, or store in your
 #' \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.
 #' @param ... Named options passed on to \code{\link[httr]{GET}}
-#' 
-#' @examples \dontrun{
+#'
+#' @examples \donttest{
 #' res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition')
 #' enigma_read(res)
-#' 
+#'
 #' # Piping workflow
 #' library('dplyr')
-#' enigma_fetch(dataset='com.crunchbase.info.companies.acquisition') %>% 
+#' enigma_fetch(dataset='com.crunchbase.info.companies.acquisition') %>%
 #'    enigma_read %>%
 #'    glimpse
-#' 
+#'
 #' # Curl debugging
 #' library('httr')
 #' enigma_fetch(dataset='com.crunchbase.info.companies.acquisition', config=verbose())

@@ -24,7 +24,7 @@ info, table, ancestor datapaths, database boundary datapath, database boundary l
 boundary tables, and paths, and an additional slot for description of table column attributes.
 }
 \examples{
-\dontrun{
+\donttest{
 # Parent node response attributes
 enigma_metadata(dataset='us.gov.whitehouse')
 enigma_metadata(dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics')

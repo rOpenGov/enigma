@@ -51,7 +51,7 @@ the nth page of results. Pages are calculated based on the current limit, which 
 Get statistics on columns of a dataset from Enigma.
 }
 \examples{
-\dontrun{
+\donttest{
 # stats on a varchar column
 cbase <- 'com.crunchbase.info.companies.acquisition'
 enigma_stats(dataset=cbase, select='acquired_month')

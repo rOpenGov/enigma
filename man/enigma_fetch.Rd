@@ -28,7 +28,7 @@ directory with name of the dataset, and file extension \code{.csv.gz}.}
 Download a gzipped csv file of a dataset.
 }
 \examples{
-\dontrun{
+\donttest{
 res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition')
 enigma_read(res)
 
