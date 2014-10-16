@@ -23,7 +23,8 @@ check_dataset <- function(dataset){
 }
 
 check_key <- function(x){
-  if(is.null(x)) getOption("enigmaKey", stop("need an API key for the Enigma API")) else x
+  tmp <- if(is.null(x)) Sys.getenv("ENIGMA_KEY", "") else x
+  if(is.null(tmp)) getOption("enigmaKey", stop("need an API key for the Enigma API")) else tmp
 }
 
 en_base <- function() 'https://api.enigma.io/v2'
