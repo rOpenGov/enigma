@@ -1,8 +1,16 @@
 enigma
 =======
 
-```{r, eval=TRUE, echo=FALSE}
-opts_chunk$set(fig.width=8, fig.pos="h", fig.path="inst/assets/figure/")
+```{r, echo=FALSE}
+knitr::opts_chunk$set(
+  fig.width=8, 
+  fig.pos="h", 
+  fig.path="inst/assets/figure/",
+  comment = "#>", 
+  collapse = TRUE, 
+  warning = FALSE, 
+  message = FALSE
+)
 ```
 
 [![Build Status](https://api.travis-ci.org/rOpenGov/enigma.png)](https://travis-ci.org/rOpenGov/enigma)
@@ -11,12 +19,12 @@ opts_chunk$set(fig.width=8, fig.pos="h", fig.path="inst/assets/figure/")
 
 Enigma holds government data and provides a really nice set of APIs for data, metadata, and stats on each of the datasets. That is, you can request a dataset itself, metadata on the dataset, and summary statistics on the columns of each dataset.
 
-## enigma info
+## Enigma.io
 
-+ [enigma home page](https://app.enigma.io/)
-+ [API docs](https://app.enigma.io/api)
++ [Enigma.io home page](https://app.enigma.io/)
++ [Enigma.io API docs](https://app.enigma.io/api)
 
-## LICENSE
+## License
 
 MIT, see [LICENSE file](https://github.com/rOpenGov/enigma/blob/master/LICENSE) and [MIT text](http://opensource.org/licenses/MIT)
 
@@ -26,8 +34,7 @@ MIT, see [LICENSE file](https://github.com/rOpenGov/enigma/blob/master/LICENSE) 
 
 ```{r eval=FALSE}
 install.packages("devtools")
-library("devtools")
-install_github("ropengov/enigma")
+devtools::install_github("ropengov/enigma")
 ```
 
 ```{r}
@@ -118,9 +125,8 @@ head(out$result$frequency)
 
 Then we can do a bit of tidying and make a plot
 
-```{r warning=FALSE, message=FALSE, tidy=FALSE}
+```{r tidy=FALSE}
 library("ggplot2")
-library("ggthemes")
 df <- out$result$frequency
 df <- data.frame(distance=as.numeric(df$distance), count=as.numeric(df$count))
 ggplot(df, aes(distance, count)) +
