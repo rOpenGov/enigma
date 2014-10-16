@@ -24,7 +24,7 @@ There functions:
 An API key is required to use this package. You can supply your key in each function call, or
 store in your key in your \code{.Rprofile} file, or execute
 \code{options(enigmaKey = "<your key>")} in your R console. Obtain an API key
-by creating an account with Enigma at \url{https://enigma.io}, then get an API key from
+by creating an account with Enigma at \url{http://enigma.io}, then get an API key from
 your Enigma account page.
 }
 
