@@ -8,8 +8,10 @@ enigma_metadata(dataset = NULL, key = NULL, ...)
 \arguments{
 \item{dataset}{Dataset name. Required.}
 
-\item{key}{(character) An Enigma API key. Supply in the function call, or store in your
-\code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}}
+\item{key}{(character) Required. An Enigma API key. Supply in the function call, or store in
+your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obtain an API key
+by creating an account with Enigma at \url{https://enigma.io}, then obtain an API key from
+your account page.}
 
 \item{...}{Named options passed on to \code{\link[httr]{GET}}}
 }
@@ -25,16 +27,23 @@ boundary tables, and paths, and an additional slot for description of table colu
 }
 \examples{
 \donttest{
-# Parent node response attributes
+# After obtaining an API key from Enigma's website, pass in your key to the function call
+# or set in your options (see above instructions for the key parameter)
+# If you pass in your key to the function call use the key parameter
+
+# Parent node response attributes from Whitehouse dataset
+## US white house
 enigma_metadata(dataset='us.gov.whitehouse')
-enigma_metadata(dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics')
+
+## UCLA Ethnic power relations dataset
+enigma_metadata(dataset='edu.ucla.epr')
 
 # Table node response attributes
-## US white house visitor list
+## US white house visitor list table
 enigma_metadata(dataset='us.gov.whitehouse.visitor-list')
 
-## Domestic Market Flight Statistics (Final Destination)
-enigma_metadata('us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier')
+## UCLA Ethnic power relations dataset - armed conflict table
+enigma_metadata('edu.ucla.epr.ethnic-armed-conflict')
 }
 }
 

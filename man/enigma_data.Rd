@@ -29,8 +29,10 @@ default this searches the entire table for matching text. To search particular f
 the query format "@fieldname query". To match multiple queries, the | (or) operator can be used
 eg. "query1|query2".}
 
-\item{key}{(character) An Enigma API key. Supply in the function call, or store in your
-\code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.}
+\item{key}{(character) Required. An Enigma API key. Supply in the function call, or store in
+your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obtain an API key
+by creating an account with Enigma at \url{https://enigma.io}, then obtain an API key from
+your account page.}
 
 \item{...}{Named options passed on to \code{\link[httr]{GET}}}
 }
@@ -39,19 +41,34 @@ Fetch a dataset from Enigma.
 }
 \examples{
 \donttest{
+# After obtaining an API key from Enigma's website, pass in your key to the function call
+# or set in your options (see above instructions for the key parameter)
+# If you pass in your key to the function call use the key parameter
+
+# White house visitor list
 enigma_data(dataset='us.gov.whitehouse.visitor-list')
+
+# White house visitor list - selecting three columns
 enigma_data(dataset='us.gov.whitehouse.visitor-list', select=c('namelast','visitee_namelast',
 'last_updatedby'))
+
+# White house visitor list - sort by last name
 enigma_data(dataset='us.gov.whitehouse.visitor-list', sort='+namelast')
+
+# White house visitor list - get rows where total_people > 5
 enigma_data(dataset='us.gov.whitehouse.visitor-list', where='total_people > 5')
+
+# White house visitor list - search for Vitale in full name field
 enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@namefull=Vitale')
+
+# White house visitor list - search for SOPHIA in first name field
 enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@namefirst=SOPHIA')
 
 # Domestic Market Flight Statistics (Final Destination)
 dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier'
 enigma_data(dataset=dataset)
 
-# Search for 'apple' in the Crunchbase dataset
+# Search for 'apple' in the Crunchbase dataset, and get two columns back
 enigma_data(dataset='com.crunchbase.info.companies.acquisition', search='apple',
 select=c('acquisition','price_amount'))
 }

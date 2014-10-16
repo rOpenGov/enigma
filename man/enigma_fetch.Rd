@@ -17,8 +17,10 @@ directory with name of the dataset, and file extension \code{.csv.gz}.}
 
 \item{overwrite}{Will only overwrite existing path if TRUE.}
 
-\item{key}{(character) An Enigma API key. Supply in the function call, or store in your
-\code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Required.}
+\item{key}{(character) Required. An Enigma API key. Supply in the function call, or store in
+your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obtain an API key
+by creating an account with Enigma at \url{https://enigma.io}, then obtain an API key from
+your account page.}
 
 \item{...}{Named options passed on to \code{\link[httr]{GET}}}
 
@@ -27,8 +29,19 @@ directory with name of the dataset, and file extension \code{.csv.gz}.}
 \description{
 Download a gzipped csv file of a dataset.
 }
+\details{
+Note that \code{\link[enigma]{enigma_fetch}} downloads the file, and gives back a
+path to the file. In a separte function, \code{\link[enigma]{enigma_read}}, you can read in the
+data. \code{\link[enigma]{enigma_fetch}} doesn't read in data in case the file is very large
+which may make your R session crash or slow down significantly.
+}
 \examples{
 \donttest{
+# After obtaining an API key from Enigma's website, pass in your key to the function call
+# or set in your options (see above instructions for the key parameter)
+# If you pass in your key to the function call use the key parameter
+
+# Fetch the Crunchbase companies info dataset
 res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition')
 enigma_read(res)
 

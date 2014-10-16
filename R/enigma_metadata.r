@@ -3,25 +3,34 @@
 #' @export
 #'
 #' @param dataset Dataset name. Required.
-#' @param key (character) An Enigma API key. Supply in the function call, or store in your
-#' \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}
+#' @param key (character) Required. An Enigma API key. Supply in the function call, or store in 
+#' your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obtain an API key 
+#' by creating an account with Enigma at \url{https://enigma.io}, then obtain an API key from 
+#' your account page.
 #' @param ... Named options passed on to \code{\link[httr]{GET}}
 #' @details Notice when you run the examples that the format of output is different for the
 #' "parent nodes" vs. the "table nodes". Where the parent nodes have ouput$meta slots for
 #' paths, immediate nodes and children tables, while the table nodes have ouput$meta slots for
 #' info, table, ancestor datapaths, database boundary datapath, database boundary label, database
 #' boundary tables, and paths, and an additional slot for description of table column attributes.
-#' @examples \donttest{ 
-#' # Parent node response attributes
+#' @examples \donttest{
+#' # After obtaining an API key from Enigma's website, pass in your key to the function call
+#' # or set in your options (see above instructions for the key parameter)
+#' # If you pass in your key to the function call use the key parameter
+#'  
+#' # Parent node response attributes from Whitehouse dataset
+#' ## US white house
 #' enigma_metadata(dataset='us.gov.whitehouse')
-#' enigma_metadata(dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics')
+#' 
+#' ## UCLA Ethnic power relations dataset
+#' enigma_metadata(dataset='edu.ucla.epr')
 #'
 #' # Table node response attributes
-#' ## US white house visitor list
+#' ## US white house visitor list table
 #' enigma_metadata(dataset='us.gov.whitehouse.visitor-list')
 #'
-#' ## Domestic Market Flight Statistics (Final Destination)
-#' enigma_metadata('us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier')
+#' ## UCLA Ethnic power relations dataset - armed conflict table
+#' enigma_metadata('edu.ucla.epr.ethnic-armed-conflict')
 #' }
 
 enigma_metadata <- function(dataset=NULL, key=NULL, ...)
