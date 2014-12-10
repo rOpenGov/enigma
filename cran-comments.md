@@ -1,9 +1,9 @@
-R CMD CHECK passed on my local OS X install with R 3.1.1 and R development version, Ubuntu running on Travis-CI, and Win builder.
+R CMD CHECK passed on my local OS X install with R 3.1.2 and R development version, Ubuntu running on Travis-CI, and Win builder.
 
-I have read and agree to the the CRAN policies at http://cran.r-project.org/web/packages/policies.html.
+This version now includes packages in Suggests field in the DESCRIPTION file
+that are mentioned in examples. 
 
-This push fixes description of the package in the DESCRIPTION file, changes \dontrun to \donttest, and adds more instructions on obtaining and using an API key for Enigma. 
-
-The name of the package is enigma, all lowercase, while the name of the company to which this package interacts with is Enigma, uppercase "E". I asked them if they were okay with this R package name, and they were okay with the name.
+In addition, all examples are in \dontrun instead of \donttest given the upcoming change of running examples in \donttest on R CMD CHECk. This is needed because requests to the Enigma API require an API key, so examples
+won't run if a key is not provided. 
 
 Thanks! Scott Chamberlain
