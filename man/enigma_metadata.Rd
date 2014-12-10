@@ -26,7 +26,7 @@ info, table, ancestor datapaths, database boundary datapath, database boundary l
 boundary tables, and paths, and an additional slot for description of table column attributes.
 }
 \examples{
-\donttest{
+\dontrun{
 # After obtaining an API key from Enigma's website, pass in your key to the function call
 # or set in your options (see above instructions for the key parameter)
 # If you pass in your key to the function call use the key parameter

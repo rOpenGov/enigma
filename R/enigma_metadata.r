@@ -3,9 +3,9 @@
 #' @export
 #'
 #' @param dataset Dataset name. Required.
-#' @param key (character) Required. An Enigma API key. Supply in the function call, or store in 
-#' your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obtain an API key 
-#' by creating an account with Enigma at \url{http://enigma.io}, then obtain an API key from 
+#' @param key (character) Required. An Enigma API key. Supply in the function call, or store in
+#' your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obtain an API key
+#' by creating an account with Enigma at \url{http://enigma.io}, then obtain an API key from
 #' your account page.
 #' @param ... Named options passed on to \code{\link[httr]{GET}}
 #' @details Notice when you run the examples that the format of output is different for the
@@ -13,15 +13,15 @@
 #' paths, immediate nodes and children tables, while the table nodes have ouput$meta slots for
 #' info, table, ancestor datapaths, database boundary datapath, database boundary label, database
 #' boundary tables, and paths, and an additional slot for description of table column attributes.
-#' @examples \donttest{
+#' @examples \dontrun{
 #' # After obtaining an API key from Enigma's website, pass in your key to the function call
 #' # or set in your options (see above instructions for the key parameter)
 #' # If you pass in your key to the function call use the key parameter
-#'  
+#'
 #' # Parent node response attributes from Whitehouse dataset
 #' ## US white house
 #' enigma_metadata(dataset='us.gov.whitehouse')
-#' 
+#'
 #' ## UCLA Ethnic power relations dataset
 #' enigma_metadata(dataset='edu.ucla.epr')
 #'

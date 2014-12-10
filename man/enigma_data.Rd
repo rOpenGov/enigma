@@ -40,7 +40,7 @@ your account page.}
 Fetch a dataset from Enigma.
 }
 \examples{
-\donttest{
+\dontrun{
 # After obtaining an API key from Enigma's website, pass in your key to the function call
 # or set in your options (see above instructions for the key parameter)
 # If you pass in your key to the function call use the key parameter

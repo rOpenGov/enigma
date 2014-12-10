@@ -1,13 +1,13 @@
 #' Get rate limit data.
-#' 
+#'
 #' @export
-#' 
-#' @param key (character) Required. An Enigma API key. Supply in the function call, or store in 
-#' your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obtain an API key 
-#' by creating an account with Enigma at \url{http://enigma.io}, then obtain an API key from 
+#'
+#' @param key (character) Required. An Enigma API key. Supply in the function call, or store in
+#' your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obtain an API key
+#' by creating an account with Enigma at \url{http://enigma.io}, then obtain an API key from
 #' your account page.
 #' @param ... Named options passed on to \code{\link[httr]{GET}}
-#' @examples \donttest{
+#' @examples \dontrun{
 #' rate_limit()
 #' }
 
@@ -31,7 +31,7 @@ print.enigma_rate <- function (x, ...)
   cat("Resets in:  ", time(x$seconds_remaining), "\n", sep = "")
 }
 
-time <- function (x) 
+time <- function (x)
 {
   x <- as.integer(x)
   if (x > 3600) {

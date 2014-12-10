@@ -36,7 +36,7 @@ data. \code{\link[enigma]{enigma_fetch}} doesn't read in data in case the file i
 which may make your R session crash or slow down significantly.
 }
 \examples{
-\donttest{
+\dontrun{
 # After obtaining an API key from Enigma's website, pass in your key to the function call
 # or set in your options (see above instructions for the key parameter)
 # If you pass in your key to the function call use the key parameter

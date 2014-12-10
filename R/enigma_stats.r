@@ -30,16 +30,16 @@
 #' direction. + denotes ascending order, - denotes descending
 #' @param page (numeric) Paginate frequency, compound sum, or compound average results and return
 #' the nth page of results. Pages are calculated based on the current limit, which defaults to 500.
-#' @param key (character) Required. An Enigma API key. Supply in the function call, or store in 
-#' your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obtain an API key 
-#' by creating an account with Enigma at \url{http://enigma.io}, then obtain an API key from 
+#' @param key (character) Required. An Enigma API key. Supply in the function call, or store in
+#' your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obtain an API key
+#' by creating an account with Enigma at \url{http://enigma.io}, then obtain an API key from
 #' your account page.
 #' @param ... Named options passed on to \code{\link[httr]{GET}}
-#' @examples \donttest{
+#' @examples \dontrun{
 #' # After obtaining an API key from Enigma's website, pass in your key to the function call
 #' # or set in your options (see above instructions for the key parameter)
 #' # If you pass in your key to the function call use the key parameter
-#' 
+#'
 #' # stats on a varchar column
 #' cbase <- 'com.crunchbase.info.companies.acquisition'
 #' enigma_stats(dataset=cbase, select='acquired_month')

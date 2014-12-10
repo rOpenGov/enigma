@@ -17,7 +17,7 @@ your account page.}
 Get rate limit data.
 }
 \examples{
-\donttest{
+\dontrun{
 rate_limit()
 }
 }
