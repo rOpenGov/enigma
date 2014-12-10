@@ -3,7 +3,7 @@
 %\VignetteIndexEntry{enigma vignette}
 -->
 
-enigma vignette - Interface to Sunlight Labs APIs.
+enigma vignette
 ======
 
 `enigma` is an R package to search and retrieve data from Enigma.io
@@ -28,6 +28,10 @@ devtools::install_github("ropengov/enigma")
 ```{r}
 library('enigma')
 ```
+
+## Authentication
+
+Enigma API calls require an API key. Go to your account at [https://app.enigma.io/settings/account](https://app.enigma.io/settings/account) and your key should be on the left hand side near the bottom. You can either pass in your API key each function call with the `key` parameter, or save your key as either an R environment variable (use the name `ENIGMA_KEY`), or an R option (use the name `enigmaKey`).
 
 ## Get data
 
