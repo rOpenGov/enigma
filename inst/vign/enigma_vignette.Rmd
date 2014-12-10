@@ -1,0 +1,129 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{enigma vignette}
+-->
+
+enigma vignette - Interface to Sunlight Labs APIs.
+======
+
+`enigma` is an R package to search and retrieve data from Enigma.io
+
+Enigma holds government data and provides a really nice set of APIs for data, metadata, and stats on each of the datasets. That is, you can request a dataset itself, metadata on the dataset, and summary statistics on the columns of each dataset.
+
+## Installation
+
+Stable version from CRAN
+
+```{r eval=FALSE}
+install.packages("enigma")
+```
+
+Or, install development version from GitHub
+
+```{r eval=FALSE}
+install.packages("devtools")
+devtools::install_github("ropengov/enigma")
+```
+
+```{r}
+library('enigma')
+```
+
+## Get data
+
+```{r}
+out <- enigma_data(dataset='us.gov.whitehouse.visitor-list', select=c('namelast','visitee_namelast','last_updatedby'))
+```
+
+Some metadata on the results
+
+```{r}
+out$info
+```
+
+Look at the data, first 6 rows for readme brevity
+
+```{r}
+head(out$result)
+```
+
+## Statistics on dataset columns
+
+```{r}
+out <- enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='total_people')
+```
+
+Some summary stats
+
+```{r}
+out$result[c('sum','avg','stddev','variance','min','max')]
+```
+
+Frequency details
+
+```{r}
+head(out$result$frequency)
+```
+
+## Metadata on datasets
+
+```{r}
+out <- enigma_metadata(dataset='us.gov.whitehouse')
+```
+
+Paths
+
+```{r}
+out$info$paths
+```
+
+Immediate nodes
+
+```{r}
+out$info$immediate_nodes
+```
+
+Children tables
+
+```{r}
+out$info$children_tables[[1]]
+```
+
+## Use case: Plot frequency of flight distances
+
+First, get columns for the air carrier dataset
+
+```{r}
+dset <- 'us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier'
+head(enigma_metadata(dset)$columns$table[,c(1:4)])
+```
+
+Looks like there's a column called _distance_ that we can search on. We by default for `varchar` type columns only `frequency` bake for the column.
+
+```{r}
+out <- enigma_stats(dset, select='distance')
+head(out$result$frequency)
+```
+
+Then we can do a bit of tidying and make a plot
+
+```{r tidy=FALSE}
+library("ggplot2")
+df <- out$result$frequency
+df <- data.frame(distance=as.numeric(df$distance), count=as.numeric(df$count))
+ggplot(df, aes(distance, count)) +
+  geom_bar(stat="identity") +
+  geom_point() +
+  theme_grey(base_size = 18) +
+  labs(y="flights", x="distance (miles)")
+```
+
+## Direct dataset download
+
+Enigma provides an endpoint `.../export/<datasetid>` to download a zipped csv file of the entire dataset.
+
+`enigma_fetch()` gives you an easy way to download these to a specific place on your machine. And a message tells you that a file has been written to disk.
+
+```r
+enigma_fetch(dataset='com.crunchbase.info.companies.acquisition')
+```
