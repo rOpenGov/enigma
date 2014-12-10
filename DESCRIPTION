@@ -17,11 +17,13 @@ LazyData: true
 URL: https://github.com/ropengov/enigma
 BugReports: https://github.com/ropengov/enigma/issues
 Roxygen: list(wrap = FALSE)
+VignetteBuilder: knitr
 Imports:
     httr,
     jsonlite,
     plyr
 Suggests:
+    knitr,
     testthat,
     dplyr,
     ggplot2,
