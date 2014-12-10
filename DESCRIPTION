@@ -22,4 +22,7 @@ Imports:
     jsonlite,
     plyr
 Suggests:
-    testthat
+    testthat,
+    dplyr,
+    ggplot2,
+    ggthemes
