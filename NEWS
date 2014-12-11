@@ -1,4 +1,14 @@
-enigma 0.0.1
+enigma 0.1.1
+===============
+
+MINOR IMPROVEMENTS
+
+* Libraries use in examples now in Suggests in DESCRIPTION file. (#12)
+* Fixed a bug in a helper function to check for Api keys. (#9)
+* Added URL and BugReports fields to DESCRIPTION file. (#11)
+
+
+enigma 0.1.0
 ===============
 
 NEW FEATURES
