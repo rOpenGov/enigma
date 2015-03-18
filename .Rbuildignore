@@ -5,4 +5,3 @@ README.Rmd
 ^\.Rproj\.user$
 cran-comments.md
 Makefile
-tests/testthat.R

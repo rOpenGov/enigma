@@ -8,8 +8,8 @@ Description: Enigma (https://enigma.io) holds many public datasets from
     datasets. In addition, you can download a gzipped csv file of a dataset
     if you want the whole dataset. An API key from Enigma is required to use
     enigma.
-Version: 0.1.1
-Date: 2014-12-10
+Version: 0.1.2.99
+Date: 2015-03-18
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
