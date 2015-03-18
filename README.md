@@ -4,6 +4,7 @@ enigma
 
 
 [![Build Status](https://api.travis-ci.org/rOpenGov/enigma.png)](https://travis-ci.org/rOpenGov/enigma)
+[![Coverage Status](https://coveralls.io/repos/rOpenGov/enigma/badge.svg)](https://coveralls.io/r/rOpenGov/enigma)
 
 **An R client for [Enigma.io](https://app.enigma.io/)**
 
@@ -49,19 +50,19 @@ out$info
 #> [1] 50
 #> 
 #> $total_results
-#> [1] 3965995
+#> [1] 4323911
 #> 
 #> $total_pages
-#> [1] 79320
+#> [1] 86479
 #> 
 #> $current_page
 #> [1] 1
 #> 
 #> $calls_remaining
-#> [1] 49958
+#> [1] 49995
 #> 
 #> $seconds_remaining
-#> [1] 1378384
+#> [1] 1134053
 ```
 
 Look at the data, first 6 rows for readme brevity
@@ -70,12 +71,12 @@ Look at the data, first 6 rows for readme brevity
 ```r
 head(out$result)
 #>   namelast visitee_namelast last_updatedby
-#> 1 MATTHEWS            POTUS             LC
-#> 2    DOYLE            POTUS             B3
-#> 3 MATTHEWS            POTUS             LC
-#> 4   MALONE            POTUS             DC
-#> 5   WILSON            POTUS             DC
-#> 6    ABEBE            POTUS             GB
+#> 1   BELBAS           OFFICE             T1
+#> 2     BOUL            POTUS             J7
+#> 3   VITALE             TING             GB
+#> 4   VITALE             TING             GB
+#> 5   VITALE             TING             GB
+#> 6   VITALE             TING             GB
 ```
 
 
@@ -92,16 +93,16 @@ Some summary stats
 ```r
 out$result[c('sum','avg','stddev','variance','min','max')]
 #> $sum
-#> [1] "1124496594"
+#> [1] "1217922863"
 #> 
 #> $avg
-#> [1] "284.9675774590850448"
+#> [1] "283.0661263898253362"
 #> 
 #> $stddev
-#> [1] "538.834750750563"
+#> [1] "540.440838220873"
 #> 
 #> $variance
-#> [1] "290342.888616420900"
+#> [1] "292076.299616879826"
 #> 
 #> $min
 #> [1] "0"
@@ -117,12 +118,12 @@ Frequency details
 ```r
 head(out$result$frequency)
 #>   total_people  count
-#> 1            1 179164
-#> 2            6 110585
-#> 3            2 110305
-#> 4            4  89524
-#> 5            3  89288
-#> 6            5  76722
+#> 1            1 197859
+#> 2            6 122071
+#> 3            2 120788
+#> 4            4  98663
+#> 5            3  97771
+#> 6          275  84981
 ```
 
 
@@ -227,13 +228,13 @@ First, get columns for the air carrier dataset
 ```r
 dset <- 'us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier'
 head(enigma_metadata(dset)$columns$table[,c(1:4)])
-#>               id          label         type index
-#> 1     passengers     Passengers type_varchar     0
-#> 2        freight Freight (Lbs.) type_varchar     1
-#> 3           mail    Mail (Lbs.) type_varchar     2
-#> 4       distance Distance (Mi.) type_varchar     3
-#> 5 unique_carrier Unique Carrier type_varchar     4
-#> 6     airline_id     Airline ID type_numeric     5
+#>                    id               label         type index
+#> 1                year                Year type_varchar     0
+#> 2             quarter             Quarter type_numeric     1
+#> 3               month               Month type_numeric     2
+#> 4          airline_id          Airline ID type_varchar     3
+#> 5      unique_carrier      Unique Carrier type_varchar     4
+#> 6 unique_carrier_name Unique Carrier Name type_varchar     5
 ```
 
 
@@ -244,12 +245,12 @@ Looks like there's a column called _distance_ that we can search on. We by defau
 out <- enigma_stats(dset, select='distance')
 head(out$result$frequency)
 #>   distance count
-#> 1     0.00 16039
-#> 2    59.00 13235
-#> 3   296.00 13202
-#> 4    16.00 12855
-#> 5    95.00 12357
-#> 6    94.00 12167
+#> 1     0.00 16456
+#> 2   296.00 13595
+#> 3    59.00 13504
+#> 4    16.00 13101
+#> 5    95.00 12669
+#> 6    94.00 12354
 ```
 
 Then we can do a bit of tidying and make a plot
@@ -266,7 +267,7 @@ ggplot(df, aes(distance, count)) +
   labs(y="flights", x="distance (miles)")
 ```
 
-![plot of chunk unnamed-chunk-16](inst/assets/figure/unnamed-chunk-16.png) 
+![plot of chunk unnamed-chunk-16](inst/assets/figure/unnamed-chunk-16-1.png) 
 
 ### Direct dataset download
 
