@@ -56,15 +56,14 @@
 #' }
 
 enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NULL, where=NULL,
-                        search=NULL, key=NULL, ...)
-{
+                        search=NULL, key=NULL, ...) {
   key <- check_key(key)
   check_dataset(dataset)
-  if(!is.null(select)) select <- paste(select, collapse = ",")
+  if (!is.null(select)) select <- paste(select, collapse = ",")
 
   url <- sprintf('%s/data/%s/%s', en_base(), key, dataset)
-  args <- engigma_compact(list(limit=limit, select=select, sort=sort, page=page,
-                               where=where, search=search))
+  args <- engigma_compact(list(limit = limit, select = select, sort = sort, page = page,
+                               where = where, search = search))
   json <- enigma_GET(url, args, ...)
   meta <- json$info
   json$result <- lapply(json$result, as.list)
@@ -72,5 +71,5 @@ enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NUL
                   lapply(json$result, function(x){
                     x[sapply(x, is.null)] <- NA; data.frame(x, stringsAsFactors = FALSE)
                   }))
-  structure(list(success = json$success, datapath = json$datapath, info = meta, result = dat2), class="enigma")
+  structure(list(success = json$success, datapath = json$datapath, info = meta, result = dat2), class = "enigma")
 }

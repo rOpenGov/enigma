@@ -1,6 +1,6 @@
 Package: enigma
 Title: R Client for the Enigma API
-Description: Enigma (https://enigma.io) holds many public datasets from
+Description: The company Enigma (https://enigma.io) holds many public datasets from
     governments, companies, universities, and organizations. Enigma provides an
     API for data, metadata, and statistics on each of the datasets. enigma is
     an R client to interact with the Enigma API, including getting the data
@@ -8,8 +8,8 @@ Description: Enigma (https://enigma.io) holds many public datasets from
     datasets. In addition, you can download a gzipped csv file of a dataset
     if you want the whole dataset. An API key from Enigma is required to use
     enigma.
-Version: 0.1.2.99
-Date: 2015-03-18
+Version: 0.1.3.99
+Date: 2015-04-22
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE

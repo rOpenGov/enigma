@@ -24,11 +24,11 @@ test_that("enigma_data works correctly for sorting data", {
 })
 
 test_that("enigma_data works correctly to get data subset", {
-  res3 <- enigma_data(dataset='com.nike.manufacturing-disclosures', where='total_workers > 1000')
+  res3 <- enigma_data(dataset = 'us.gov.whitehouse.visitor-list', where = 'total_people > 5')
   expect_is(res3, "enigma")
   expect_true(res3$success)
   expect_is(res3$datapath, "character")
   expect_is(res3$info, "list")
   expect_is(res3$result, "data.frame")
-  expect_more_than(sample(as.numeric(res3$result$total_workers), 1), 1000)
+  expect_more_than(min(as.numeric(res3$result$total_people)), 5)
 })
