@@ -11,8 +11,7 @@
 #' rate_limit()
 #' }
 
-rate_limit <- function(key=NULL, ...)
-{
+rate_limit <- function(key=NULL, ...) {
   key <- check_key(key)
   url <- sprintf('%s/limits/%s', en_base(), key)
   json <- enigma_GET(url, list(), ...)
@@ -21,8 +20,7 @@ rate_limit <- function(key=NULL, ...)
 }
 
 #' @export
-print.enigma_rate <- function (x, ...)
-{
+print.enigma_rate <- function (x, ...) {
   cat("Period: ", x$period, "\n", sep = "")
   cat("Rate limit: 5000", "\n", sep = "")
   cat("Remaining - data:  ", x$data, "\n", sep = "")
@@ -31,8 +29,7 @@ print.enigma_rate <- function (x, ...)
   cat("Resets in:  ", time(x$seconds_remaining), "\n", sep = "")
 }
 
-time <- function (x)
-{
+time <- function(x) {
   x <- as.integer(x)
   if (x > 3600) {
     paste0(x%/%3600, " hours")

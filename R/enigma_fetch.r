@@ -37,19 +37,18 @@
 #' enigma_fetch(dataset='com.crunchbase.info.companies.acquisition', config=verbose())
 #' }
 
-enigma_fetch <- function(dataset=NULL, path=NULL, overwrite = TRUE, key=NULL, ...)
-{
+enigma_fetch <- function(dataset=NULL, path=NULL, overwrite = TRUE, key=NULL, ...) {
   url <- sprintf('%s/export/%s/%s', en_base(), check_key(key), check_dataset(dataset))
   res <- GET(url, ...)
   json <- error_handler(res)
-  if(is.null(path)) path <- file.path(Sys.getenv('HOME'), parse_url(json$export_url)$path)
+  if (is.null(path)) path <- file.path(Sys.getenv('HOME'), parse_url(json$export_url)$path)
   bin <- GET(json$export_url, write_disk(path = path, overwrite = overwrite), ...)
   message( sprintf("On disk at %s", bin$request$writer[[1]]) )
-  structure(path, class="enigma_fetch", dataset=dataset)
+  structure(path, class = "enigma_fetch", dataset = dataset)
 }
 
 #' @export
-print.enigma_fetch <- function (x, ...){
+print.enigma_fetch <- function(x, ...) {
   stopifnot(is(x, 'enigma_fetch'))
   cat("<<enigma download>>", "\n", sep = "")
   cat("  Dataset: ", attr(x, "dataset"), "\n", sep = "")
@@ -60,12 +59,11 @@ print.enigma_fetch <- function (x, ...){
 #' @export
 #' @param input The output from \code{enigma_fetch} or a path to a file downloaded from Enigma.io
 #' @rdname enigma_fetch
-enigma_read <- function(input)
-{
+enigma_read <- function(input) {
   input <- as.enigma_fetch(input)
   read.delim(input[[1]], header = TRUE, sep = ",", stringsAsFactors = FALSE)
 }
 
 as.enigma_fetch <- function(x) UseMethod("as.enigma_fetch")
 as.enigma_fetch.enigma_fetch <- function(x) x
-as.enigma_fetch.character <- function(x) structure(x, class='enigma_fetch', dataset=NA)
+as.enigma_fetch.character <- function(x) structure(x, class = 'enigma_fetch', dataset = NA)

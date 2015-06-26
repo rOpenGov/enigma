@@ -2,6 +2,8 @@
 context("enigma_data")
 
 test_that("enigma_data column selection works correctly", {
+  skip_on_cran()
+  
   cols <- c('namelast','visitee_namelast','last_updatedby')
   res1 <- enigma_data(dataset='us.gov.whitehouse.visitor-list', select=cols)
   expect_is(res1, "enigma")
@@ -13,6 +15,8 @@ test_that("enigma_data column selection works correctly", {
 })
 
 test_that("enigma_data works correctly for sorting data", {
+  skip_on_cran()
+  
   res2 <- enigma_data(dataset='us.gov.whitehouse.visitor-list', sort='+namelast')
   res2_2 <- enigma_data(dataset='us.gov.whitehouse.visitor-list', sort='-namelast')
   expect_is(res2, "enigma")
@@ -24,6 +28,8 @@ test_that("enigma_data works correctly for sorting data", {
 })
 
 test_that("enigma_data works correctly to get data subset", {
+  skip_on_cran()
+  
   res3 <- enigma_data(dataset = 'us.gov.whitehouse.visitor-list', where = 'total_people > 5')
   expect_is(res3, "enigma")
   expect_true(res3$success)

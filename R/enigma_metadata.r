@@ -33,8 +33,7 @@
 #' enigma_metadata('edu.ucla.epr.ethnic-armed-conflict')
 #' }
 
-enigma_metadata <- function(dataset=NULL, key=NULL, ...)
-{
+enigma_metadata <- function(dataset=NULL, key=NULL, ...) {
   key <- check_key(key)
   check_dataset(dataset)
 

@@ -74,8 +74,8 @@
 #' }
 
 enigma_stats <- function(dataset=NULL, select=NULL, operation=NULL, by=NULL, of=NULL, limit=500,
-  search=NULL, where=NULL, sort=NULL, page=NULL, key=NULL, ...)
-{
+  search=NULL, where=NULL, sort=NULL, page=NULL, key=NULL, ...) {
+  
   key <- check_key(key)
   check_dataset(dataset)
 
@@ -87,7 +87,7 @@ enigma_stats <- function(dataset=NULL, select=NULL, operation=NULL, by=NULL, of=
   structure(list(success = json$success, datapath = json$datapath, info = json$info, result = sum_stats), class="enigma_stats")
 }
 
-enigma_stats_dat_parser <- function(x){
+enigma_stats_dat_parser <- function(x) {
   nn <- names(x$result)
   res <- lapply(nn, function(z){
     tmp <- x$result[[z]]

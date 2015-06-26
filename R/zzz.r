@@ -11,6 +11,7 @@ error_handler <- function(x){
 }
 
 enigma_GET <- function(url, args, ...){
+  if (length(args) == 0) args <- NULL
   res <- GET(url, query = args, ...)
   error_handler(res)
 }
