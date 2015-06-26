@@ -14,7 +14,8 @@ knitr::opts_chunk$set(
 ```
 
 [![Build Status](https://api.travis-ci.org/rOpenGov/enigma.png)](https://travis-ci.org/rOpenGov/enigma)
-[![Coverage Status](https://coveralls.io/repos/rOpenGov/enigma/badge.svg)](https://coveralls.io/r/rOpenGov/enigma)
+<!-- [![Coverage Status](https://coveralls.io/repos/rOpenGov/enigma/badge.svg)](https://coveralls.io/r/rOpenGov/enigma) -->
+[![codecov.io](https://codecov.io/github/ropengov/enigma/coverage.svg?branch=master)](https://codecov.io/github/ropengov/enigma?branch=master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/enigma)](https://github.com/metacran/cranlogs.app)
 [![cran version](http://www.r-pkg.org/badges/version/enigma)](http://cran.rstudio.com/web/packages/enigma)
 
