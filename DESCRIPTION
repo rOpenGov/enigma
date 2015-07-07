@@ -18,7 +18,9 @@ BugReports: https://github.com/ropengov/enigma/issues
 Roxygen: list(wrap = FALSE)
 VignetteBuilder: knitr
 Imports:
-    httr,
+    methods,
+    utils,
+    httr (>= 1.0.0),
     jsonlite,
     plyr
 Suggests:

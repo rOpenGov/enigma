@@ -21,6 +21,8 @@
 #' by creating an account with Enigma at \url{http://enigma.io}, then get an API key from 
 #' your Enigma account page.
 #'
+#' @importFrom methods is
+#' @importFrom utils read.delim
 #' @name enigma
 #' @docType package
 NULL
