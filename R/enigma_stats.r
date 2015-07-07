@@ -1,6 +1,6 @@
 #' Get statistics on columns of a dataset from Enigma.
 #'
-#' @import httr
+#' @importFrom httr GET content write_disk parse_url
 #' @importFrom jsonlite fromJSON
 #' @importFrom plyr rbind.fill
 #'
@@ -75,7 +75,7 @@
 
 enigma_stats <- function(dataset=NULL, select=NULL, operation=NULL, by=NULL, of=NULL, limit=500,
   search=NULL, where=NULL, sort=NULL, page=NULL, key=NULL, ...) {
-  
+
   key <- check_key(key)
   check_dataset(dataset)
 
