@@ -24,7 +24,7 @@ test_that("enigma_data works correctly for sorting data", {
   expect_is(res2$datapath, "character")
   expect_is(res2$info, "list")
   expect_is(res2$result, "data.frame")
-  expect_equal(unique(sapply(res2_2$result$namelast, function(x) substring(x, 1, 1), USE.NAMES = FALSE)), "Z")
+  expect_equal(unique(tolower(sapply(res2_2$result$namelast, function(x) substring(x, 1, 1), USE.NAMES = FALSE))), "z")
 })
 
 test_that("enigma_data works correctly to get data subset", {
