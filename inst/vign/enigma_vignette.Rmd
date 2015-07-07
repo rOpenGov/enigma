@@ -1,10 +1,20 @@
 <!--
 %\VignetteEngine{knitr}
 %\VignetteIndexEntry{enigma vignette}
+%\VignetteEncoding{UTF-8}
 -->
 
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
 enigma vignette
-======
+===============
 
 `enigma` is an R package to search and retrieve data from Enigma.io
 
