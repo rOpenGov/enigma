@@ -22,7 +22,7 @@
 #' your Enigma account page.
 #'
 #' @importFrom methods is
-#' @importFrom utils read.delim
+#' @importFrom utils read.delim head
 #' @name enigma
 #' @docType package
 NULL
