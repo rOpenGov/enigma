@@ -1,4 +1,4 @@
-engigma_compact <- function(l) Filter(Negate(is.null), l)
+ec <- function(l) Filter(Negate(is.null), l)
 
 error_handler <- function(x){
   res_info <- content(x)$info

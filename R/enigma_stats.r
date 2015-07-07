@@ -8,6 +8,8 @@
 #'
 #' @param dataset Dataset name. Required.
 #' @param select (character) Column to get statistics on. Required.
+#' @param conjunction one of "and" or "or". Only applicable when more than one \code{search}
+#' or \code{where} parameter is provided. Default: "and"
 #' @param operation (character) Operation to run on a given column. For a numerical column, valid operations
 #' are sum, avg, stddev, variance, max, min and frequency. For a date column, valid operations are
 #' max, min and frequency. For all other columns, the only valid operation is frequency. Defaults
@@ -71,33 +73,43 @@
 #'  geom_point() +
 #'  theme_grey(base_size = 18) +
 #'  labs(y="flights", x="distance (miles)")
+#'  
+#' # conjunction parmeter, compare these two queries
+#' enigma_stats(dataset = 'us.gov.dol.ogesdw.msha.msha-accident', select = "no_injuries",
+#'    where = c('degree_injury_cd > 2', 'no_injuries > 1'), conjunction = "and")
+#' enigma_stats(dataset = 'us.gov.dol.ogesdw.msha.msha-accident', select = "no_injuries",
+#'    where = c('degree_injury_cd > 2', 'no_injuries > 1'), conjunction = "or")
 #' }
 
-enigma_stats <- function(dataset=NULL, select=NULL, operation=NULL, by=NULL, of=NULL, limit=500,
-  search=NULL, where=NULL, sort=NULL, page=NULL, key=NULL, ...) {
+enigma_stats <- function(dataset=NULL, select, conjunction = NULL, operation=NULL, 
+  by=NULL, of=NULL, limit=500, search=NULL, where=NULL, sort=NULL, page=NULL, key=NULL, ...) {
 
   key <- check_key(key)
   check_dataset(dataset)
 
   url <- sprintf('%s/stats/%s/%s/select/%s', en_base(), key, dataset, select)
-  args <- engigma_compact(list(operation=operation, by=by, of=of, limit=limit,
-                               search=search, where=where, sort=sort, page=page))
+  sw <- proc_search_where(search, where)
+  args <- list(operation = operation, conjunction = conjunction, by = by, of = of, 
+               limit = limit, sort = sort, page = page)
+  args <- as.list(unlist(ec(c(sw, args))))
   json <- enigma_GET(url, args, ...)
   sum_stats <- enigma_stats_dat_parser(json)
-  structure(list(success = json$success, datapath = json$datapath, info = json$info, result = sum_stats), class="enigma_stats")
+  structure(list(success = json$success, datapath = json$datapath, info = json$info, result = sum_stats), class = "enigma_stats")
 }
 
 enigma_stats_dat_parser <- function(x) {
   nn <- names(x$result)
   res <- lapply(nn, function(z){
     tmp <- x$result[[z]]
-    if(length(tmp) > 1){
+    if (length(tmp) > 1) {
       do.call(rbind.fill, lapply(tmp, function(w){
         b <- as.list(w)
         b[sapply(b, is.null)] <- "null"
         data.frame(b, stringsAsFactors = FALSE)
       }))
-    } else { tmp }
+    } else { 
+      tmp 
+    }
   })
   names(res) <- nn
   res

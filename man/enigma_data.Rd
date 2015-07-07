@@ -4,16 +4,20 @@
 \alias{enigma_data}
 \title{Fetch a dataset from Enigma.}
 \usage{
-enigma_data(dataset = NULL, limit = 50, select = NULL, sort = NULL,
-  page = NULL, where = NULL, search = NULL, key = NULL, ...)
+enigma_data(dataset = NULL, limit = 500, select = NULL,
+  conjunction = NULL, sort = NULL, page = NULL, where = NULL,
+  search = NULL, key = NULL, ...)
 }
 \arguments{
 \item{dataset}{Dataset name. Required.}
 
-\item{limit}{(numeric) Number of rows of the dataset to return. Default: 50}
+\item{limit}{(numeric) Number of rows of the dataset to return. Default (and max): 500}
 
 \item{select}{(character) Vector of columns to be returned with each row. Default is to return
 all columns.}
+
+\item{conjunction}{one of "and" or "or". Only applicable when more than one \code{search}
+or \code{where} parameter is provided. Default: "and"}
 
 \item{sort}{(character) Sort rows by a particular column in a given direction. + denotes
 ascending order, - denotes descending. See examples.}
@@ -74,6 +78,12 @@ enigma_data(dataset=dataset)
 # Search for 'apple' in the Crunchbase dataset, and get two columns back
 enigma_data(dataset='com.crunchbase.info.companies.acquisition', search='apple',
 select=c('acquisition','price_amount'))
+
+# conjunction parmeter, compare these two queries
+enigma_data(dataset = 'us.gov.dol.ogesdw.msha.msha-accident',
+   where = c('degree_injury_cd > 2', 'no_injuries > 1'), conjunction = "and")
+enigma_data(dataset = 'us.gov.dol.ogesdw.msha.msha-accident',
+   where = c('degree_injury_cd > 2', 'no_injuries > 1'), conjunction = "or")
 }
 }
 

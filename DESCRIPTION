@@ -8,7 +8,7 @@ Description: The company 'Enigma' (https://enigma.io) holds many public 'dataset
     'datasets'. In addition, you can download a 'gzipped' 'csv' file of a 'dataset'
     if you want the whole 'dataset'. An 'API' key from 'Enigma' is required to use
     'enigma'.
-Version: 0.1.6.9000
+Version: 0.1.6.9900
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE

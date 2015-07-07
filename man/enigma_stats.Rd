@@ -4,14 +4,17 @@
 \alias{enigma_stats}
 \title{Get statistics on columns of a dataset from Enigma.}
 \usage{
-enigma_stats(dataset = NULL, select = NULL, operation = NULL, by = NULL,
-  of = NULL, limit = 500, search = NULL, where = NULL, sort = NULL,
-  page = NULL, key = NULL, ...)
+enigma_stats(dataset = NULL, select, conjunction = NULL, operation = NULL,
+  by = NULL, of = NULL, limit = 500, search = NULL, where = NULL,
+  sort = NULL, page = NULL, key = NULL, ...)
 }
 \arguments{
 \item{dataset}{Dataset name. Required.}
 
 \item{select}{(character) Column to get statistics on. Required.}
+
+\item{conjunction}{one of "and" or "or". Only applicable when more than one \code{search}
+or \code{where} parameter is provided. Default: "and"}
 
 \item{operation}{(character) Operation to run on a given column. For a numerical column, valid operations
 are sum, avg, stddev, variance, max, min and frequency. For a date column, valid operations are
@@ -90,6 +93,12 @@ ggplot(df, aes(distance, count)) +
  geom_point() +
  theme_grey(base_size = 18) +
  labs(y="flights", x="distance (miles)")
+
+# conjunction parmeter, compare these two queries
+enigma_stats(dataset = 'us.gov.dol.ogesdw.msha.msha-accident', select = "no_injuries",
+   where = c('degree_injury_cd > 2', 'no_injuries > 1'), conjunction = "and")
+enigma_stats(dataset = 'us.gov.dol.ogesdw.msha.msha-accident', select = "no_injuries",
+   where = c('degree_injury_cd > 2', 'no_injuries > 1'), conjunction = "or")
 }
 }
 
