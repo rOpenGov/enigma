@@ -4,7 +4,7 @@
 #' stats on each of the datasets. That is, you can request a dataset itself, metadata on the 
 #' dataset, and summary statistics on the columns of each dataset.
 #'
-#' There functions:
+#' The functions:
 #'
 #' \itemize{
 #'  \item \code{\link[enigma]{enigma_data}} - Fetch and dataset, and filter on columns or rows.
