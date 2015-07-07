@@ -32,9 +32,15 @@ Enigma holds government data and provides a really nice set of APIs for data, me
 
 MIT, see [LICENSE file](https://github.com/rOpenGov/enigma/blob/master/LICENSE) and [MIT text](http://opensource.org/licenses/MIT)
 
-## Quick start
+## Install
 
-### Install
+Stable version from CRAN
+
+```{r eval=FALSE}
+install.packages("enigma")
+```
+
+Or development version from GitHub
 
 ```{r eval=FALSE}
 install.packages("devtools")
