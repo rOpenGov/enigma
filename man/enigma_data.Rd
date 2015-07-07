@@ -60,10 +60,12 @@ enigma_data(dataset='us.gov.whitehouse.visitor-list', sort='+namelast')
 enigma_data(dataset='us.gov.whitehouse.visitor-list', where='total_people > 5')
 
 # White house visitor list - search for Vitale in full name field
-enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@namefull=Vitale')
+## remove the 2nd at symbol before running
+# enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@namefull=Vitale')
 
 # White house visitor list - search for SOPHIA in first name field
-enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@namefirst=SOPHIA')
+## remove the 2nd at symbol before running
+# enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@namefirst=SOPHIA')
 
 # Domestic Market Flight Statistics (Final Destination)
 dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier'

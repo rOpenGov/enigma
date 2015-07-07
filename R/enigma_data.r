@@ -41,10 +41,12 @@
 #' enigma_data(dataset='us.gov.whitehouse.visitor-list', where='total_people > 5')
 #'
 #' # White house visitor list - search for Vitale in full name field
-#' enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@@namefull=Vitale')
+#' ## remove the 2nd at symbol before running 
+#' # enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@@namefull=Vitale')
 #'
 #' # White house visitor list - search for SOPHIA in first name field
-#' enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@@namefirst=SOPHIA')
+#' ## remove the 2nd at symbol before running
+#' # enigma_data(dataset='us.gov.whitehouse.visitor-list', search='@@namefirst=SOPHIA')
 #'
 #' # Domestic Market Flight Statistics (Final Destination)
 #' dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier'
@@ -71,5 +73,14 @@ enigma_data <- function(dataset=NULL, limit=50, select=NULL, sort=NULL, page=NUL
                   lapply(json$result, function(x){
                     x[sapply(x, is.null)] <- NA; data.frame(x, stringsAsFactors = FALSE)
                   }))
-  structure(list(success = json$success, datapath = json$datapath, info = meta, result = dat2), class = "enigma")
+  structure(list(success = json$success, datapath = json$datapath, info = meta, result = dat2), 
+            class = "enigma", dataset = dataset)
+}
+
+#' @export
+print.enigma <- function(x, ..., n = 10) {
+  cat("<<enigma data>>", sep = "\n")
+  cat(paste0("  Dataset: ", attr(x, "dataset")), sep = "\n")
+  cat(paste0("  Found/returned: ", sprintf("[%s/%s]", x$info$total_results, NROW(x$result))), "\n", sep = "\n")
+  trunc_mat(x$result, n = n)
 }
