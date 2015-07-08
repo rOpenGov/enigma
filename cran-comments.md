@@ -1,14 +1,12 @@
-R CMD CHECK passed on my local OS X install with R 3.1.2 and R development 
+R CMD CHECK passed on my local OS X install on R 3.2.1 and R development
 version, Ubuntu running on Travis-CI, and Win builder.
 
-This version now includes packages in Suggests field in the DESCRIPTION file
-that are mentioned in examples. 
+This submission fixes a number of broken functions due to the
+recent update in httr on CRAN to v1.0.
 
-In addition, all examples are in \dontrun instead of \donttest given the 
-upcoming change of running examples in \donttest on R CMD CHECk. This is 
-needed because requests to the Enigma API require an API key, so examples 
-won't run if a key is not provided. I may in the future separate the API 
-request from the data parsing part in the future so examples can be run 
-on cached data.
+In addition, this package now imports non-base functions explicitly as
+needed in accordance with R-devel changes.
+
+Additional fixes/changes were made to keep up with changes in the Enigma.io APIs.
 
 Thanks! Scott Chamberlain
