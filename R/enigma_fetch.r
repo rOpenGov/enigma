@@ -38,30 +38,30 @@
 #' # Fetch the Crunchbase companies info dataset
 #' res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition')
 #' head(enigma_read(res))
-#' 
+#'
 #' # Use the select parameter to limit fields returned
-#' res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition', 
+#' res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition',
 #'    select = c("acquisition", "price_amount", "acquired_year"))
 #' head(enigma_read(res))
-#' 
+#'
 #' # Use the search parameter to query entire table or particular fields
-#' res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition', 
+#' res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition',
 #'    search = "holdings")
 #' head(enigma_read(res))
-#' 
+#'
 #' # Use the search parameter to query entire table or particular fields
-#' res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition', 
+#' res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition',
 #'    where = "price_amount > 0", select = c("acquisition", "price_amount"))
 #' df <- enigma_read(res)
 #' options(scipen = 99)
-#' head(df) 
-#' 
+#' head(df)
+#'
 #' # Use the sort parameter to sort results
-#' res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition', 
+#' res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition',
 #'    sort = "-price_amount", select = c("acquisition", "price_amount"))
 #' df <- enigma_read(res)
 #' options(scipen = 99)
-#' head(df) 
+#' head(df)
 #'
 #' # Piping workflow
 #' library('dplyr')
@@ -74,9 +74,9 @@
 #' enigma_fetch(dataset='com.crunchbase.info.companies.acquisition', config=verbose())
 #' }
 
-enigma_fetch <- function(dataset = NULL, select = NULL, search = NULL, where = NULL, 
+enigma_fetch <- function(dataset = NULL, select = NULL, search = NULL, where = NULL,
   conjunction = NULL, sort = NULL, path=NULL, overwrite = TRUE, key=NULL, ...) {
-  
+
   url <- sprintf('%s/export/%s/%s', en_base(), check_key(key), check_dataset(dataset))
   sw <- proc_search_where(search, where)
   if (!is.null(select)) select <- paste(select, collapse = ",")

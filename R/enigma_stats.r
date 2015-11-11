@@ -73,7 +73,7 @@
 #'  geom_point() +
 #'  theme_grey(base_size = 18) +
 #'  labs(y="flights", x="distance (miles)")
-#'  
+#'
 #' # conjunction parmeter, compare these two queries
 #' enigma_stats(dataset = 'us.gov.dol.ogesdw.msha.msha-accident', select = "no_injuries",
 #'    where = c('degree_injury_cd > 2', 'no_injuries > 1'), conjunction = "and")
@@ -81,7 +81,7 @@
 #'    where = c('degree_injury_cd > 2', 'no_injuries > 1'), conjunction = "or")
 #' }
 
-enigma_stats <- function(dataset=NULL, select, conjunction = NULL, operation=NULL, 
+enigma_stats <- function(dataset=NULL, select, conjunction = NULL, operation=NULL,
   by=NULL, of=NULL, limit=500, search=NULL, where=NULL, sort=NULL, page=NULL, key=NULL, ...) {
 
   key <- check_key(key)
@@ -89,7 +89,7 @@ enigma_stats <- function(dataset=NULL, select, conjunction = NULL, operation=NUL
 
   url <- sprintf('%s/stats/%s/%s/select/%s', en_base(), key, dataset, select)
   sw <- proc_search_where(search, where)
-  args <- list(operation = operation, conjunction = conjunction, by = by, of = of, 
+  args <- list(operation = operation, conjunction = conjunction, by = by, of = of,
                limit = limit, sort = sort, page = page)
   args <- as.list(unlist(ec(c(sw, args))))
   json <- enigma_GET(url, args, ...)
@@ -107,8 +107,8 @@ enigma_stats_dat_parser <- function(x) {
         b[sapply(b, is.null)] <- "null"
         data.frame(b, stringsAsFactors = FALSE)
       }))
-    } else { 
-      tmp 
+    } else {
+      tmp
     }
   })
   names(res) <- nn
