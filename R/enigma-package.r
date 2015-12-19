@@ -23,6 +23,9 @@
 #'
 #' @importFrom methods is
 #' @importFrom utils read.delim head
+#' @importFrom httr GET content write_disk parse_url
+#' @importFrom jsonlite fromJSON
+#' @importFrom plyr rbind.fill
 #' @name enigma
 #' @docType package
 NULL

@@ -1,11 +1,6 @@
 #' Get statistics on columns of a dataset from Enigma.
 #'
-#' @importFrom httr GET content write_disk parse_url
-#' @importFrom jsonlite fromJSON
-#' @importFrom plyr rbind.fill
-#'
 #' @export
-#'
 #' @param dataset Dataset name. Required.
 #' @param select (character) Column to get statistics on. Required.
 #' @param conjunction one of "and" or "or". Only applicable when more than one \code{search}
