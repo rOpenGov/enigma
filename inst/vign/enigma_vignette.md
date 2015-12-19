@@ -64,10 +64,10 @@ out$info
 #> [1] 1
 #> 
 #> $calls_remaining
-#> [1] 49912
+#> [1] 49955
 #> 
 #> $seconds_remaining
-#> [1] 2084569
+#> [1] 1102060
 ```
 
 Look at the data, first 6 rows for readme brevity
@@ -220,7 +220,7 @@ out$info$children_tables[[1]]
 #> [1] ""
 ```
 
-## Use case: Plot frequency of flight distances
+## Use case: Frequency of flight distances
 
 First, get columns for the air carrier dataset
 
@@ -251,22 +251,6 @@ head(out$result$frequency)
 #> 5    95.00 12669
 #> 6    94.00 12354
 ```
-
-Then we can do a bit of tidying and make a plot
-
-
-```r
-library("ggplot2")
-df <- out$result$frequency
-df <- data.frame(distance=as.numeric(df$distance), count=as.numeric(df$count))
-ggplot(df, aes(distance, count)) +
-  geom_bar(stat="identity") +
-  geom_point() +
-  theme_grey(base_size = 18) +
-  labs(y="flights", x="distance (miles)")
-```
-
-![plot of chunk unnamed-chunk-17](figure/unnamed-chunk-17-1.png) 
 
 ## Direct dataset download
 

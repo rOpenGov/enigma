@@ -59,20 +59,11 @@
 #' enigma_metadata(dataset=aust)
 #' enigma_stats(dataset=aust, select='contractstart', by='avg', of='value')
 #'
-#' # Get frequency of distances traveled, and plot
+#' # Get frequency of distances traveled
 #' ## get columns for the air carrier dataset
 #' dset <- 'us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier'
 #' enigma_metadata(dset)$columns$table[,c(1:4)]
-#' out <- enigma_stats(dset, select='distance')
-#' library("ggplot2")
-#' library("ggthemes")
-#' df <- out$result$frequency
-#' df <- data.frame(distance=as.numeric(df$distance), count=as.numeric(df$count))
-#' ggplot(df, aes(distance, count)) +
-#'  geom_bar(stat="identity") +
-#'  geom_point() +
-#'  theme_grey(base_size = 18) +
-#'  labs(y="flights", x="distance (miles)")
+#' enigma_stats(dset, select='distance')
 #'
 #' # conjunction parmeter, compare these two queries
 #' enigma_stats(dataset = 'us.gov.dol.ogesdw.msha.msha-accident', select = "no_injuries",

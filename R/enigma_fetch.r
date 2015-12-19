@@ -63,12 +63,6 @@
 #' options(scipen = 99)
 #' head(df)
 #'
-#' # Piping workflow
-#' library('dplyr')
-#' enigma_fetch(dataset='com.crunchbase.info.companies.acquisition') %>%
-#'    enigma_read %>%
-#'    glimpse
-#'
 #' # Curl debugging
 #' library('httr')
 #' enigma_fetch(dataset='com.crunchbase.info.companies.acquisition', config=verbose())
