@@ -36,5 +36,5 @@ test_that("enigma_data works correctly to get data subset", {
   expect_is(res3$datapath, "character")
   expect_is(res3$info, "list")
   expect_is(res3$result, "data.frame")
-  expect_more_than(min(as.numeric(res3$result$total_people)), 5)
+  expect_gt(min(as.numeric(res3$result$total_people)), 5)
 })
