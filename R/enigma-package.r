@@ -23,7 +23,7 @@
 #'
 #' @importFrom methods is
 #' @importFrom utils read.delim head
-#' @importFrom httr GET content write_disk parse_url
+#' @importFrom httr GET content write_disk parse_url stop_for_status
 #' @importFrom jsonlite fromJSON
 #' @importFrom plyr rbind.fill
 #' @importFrom xml2 read_xml
