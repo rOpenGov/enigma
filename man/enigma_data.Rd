@@ -75,9 +75,8 @@ enigma_data(dataset='us.gov.whitehouse.visitor-list', where='total_people > 5')
 dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier'
 enigma_data(dataset=dataset)
 
-# Search for 'apple' in the Crunchbase dataset, and get two columns back
-enigma_data(dataset='com.crunchbase.info.companies.acquisition', search='apple',
-select=c('acquisition','price_amount'))
+# Search for 'casa' in the Mexico's Social Security Department dataset
+enigma_data('gov.mx.imss.compras.main', search='casa', select=c('proveedor','fecha'))
 
 # conjunction parmeter, compare these two queries
 enigma_data(dataset = 'us.gov.dol.ogesdw.msha.msha-accident',

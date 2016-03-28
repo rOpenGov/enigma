@@ -26,6 +26,7 @@
 #' @importFrom httr GET content write_disk parse_url
 #' @importFrom jsonlite fromJSON
 #' @importFrom plyr rbind.fill
+#' @importFrom xml2 read_xml
 #' @name enigma
 #' @docType package
 NULL

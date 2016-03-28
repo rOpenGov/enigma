@@ -7,7 +7,7 @@
 \usage{
 enigma_fetch(dataset = NULL, select = NULL, search = NULL, where = NULL,
   conjunction = NULL, sort = NULL, path = NULL, overwrite = TRUE,
-  key = NULL, ...)
+  key = NULL, poll_sleep = 0, ...)
 
 enigma_read(input)
 }
@@ -42,9 +42,17 @@ your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obta
 by creating an account with Enigma at \url{http://enigma.io}, then obtain an API key from
 your account page.}
 
+\item{poll_sleep}{(integer) Time to sleep between polling events to fetch data. For very large
+datasets, it could take a while to be ready. By default, we poll continuously. If you are 
+requesting a large dataset and/or have not much left on your allowed requests with 
+Enigam (see \code{\link{rate_limit}}) you may want to insert some sleep time between pollings.}
+
 \item{...}{Named options passed on to \code{\link[httr]{GET}}}
 
 \item{input}{The output from \code{enigma_fetch} or a path to a file downloaded from Enigma.io}
+}
+\value{
+A (character) path to the file on your machine
 }
 \description{
 Download a gzipped csv file of a dataset.
@@ -54,6 +62,9 @@ Note that \code{\link[enigma]{enigma_fetch}} downloads the file, and gives back 
 path to the file. In a separte function, \code{\link[enigma]{enigma_read}}, you can read in the
 data. \code{\link[enigma]{enigma_fetch}} doesn't read in data in case the file is very large
 which may make your R session crash or slow down significantly.
+
+This function makes a request to ask Enigma to get a download ready. We then poll the 
+provided URL from Enigma until it is ready. Once ready we fetch it and write it to disk.
 }
 \examples{
 \dontrun{
@@ -61,37 +72,28 @@ which may make your R session crash or slow down significantly.
 # or set in your options (see above instructions for the key parameter)
 # If you pass in your key to the function call use the key parameter
 
-# Fetch the Crunchbase companies info dataset
-res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition')
+# Fetch a dataset
+res <- enigma_fetch(dataset='edu.umd.start.gtd')
 head(enigma_read(res))
 
 # Use the select parameter to limit fields returned
-res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition',
-   select = c("acquisition", "price_amount", "acquired_year"))
+res <- enigma_fetch(dataset='edu.umd.start.gtd',
+   select = c("country_txt", "resolution", "attacktype1"))
 head(enigma_read(res))
 
 # Use the search parameter to query entire table or particular fields
-res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition',
-   search = "holdings")
+res <- enigma_fetch(dataset='edu.umd.start.gtd', search = "armed")
 head(enigma_read(res))
 
 # Use the search parameter to query entire table or particular fields
-res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition',
-   where = "price_amount > 0", select = c("acquisition", "price_amount"))
+res <- enigma_fetch(dataset='edu.umd.start.gtd',
+   where = "nkill > 0", select = c("country_txt", "attacktype1", "nkill"))
 df <- enigma_read(res)
-options(scipen = 99)
-head(df)
-
-# Use the sort parameter to sort results
-res <- enigma_fetch(dataset='com.crunchbase.info.companies.acquisition',
-   sort = "-price_amount", select = c("acquisition", "price_amount"))
-df <- enigma_read(res)
-options(scipen = 99)
 head(df)
 
 # Curl debugging
 library('httr')
-enigma_fetch(dataset='com.crunchbase.info.companies.acquisition', config=verbose())
+enigma_fetch(dataset='edu.umd.start.gtd', config=verbose())
 }
 }
 
