@@ -38,11 +38,11 @@
 #' # If you pass in your key to the function call use the key parameter
 #'
 #' # stats on a varchar column
-#' cbase <- 'com.crunchbase.info.companies.acquisition'
-#' enigma_stats(dataset=cbase, select='acquired_month')
+#' x <- 'gov.mx.imss.compras.main'
+#' enigma_stats(x, select='provider_id')
 #'
 #' # stats on a numeric column
-#' enigma_stats(dataset=cbase, select='price_amount')
+#' enigma_stats(x, select='serialid')
 #'
 #' # stats on a date column
 #' pakistan <- 'gov.pk.secp.business-registry.all-entities'

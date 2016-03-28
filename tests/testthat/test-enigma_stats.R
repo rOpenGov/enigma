@@ -1,12 +1,12 @@
 # tests for enigma_stats fxn in taxize
 context("enigma_stats")
 
-cbase <- 'com.crunchbase.info.companies.acquisition'
+cbase <- 'us.gov.whitehouse.visitor-list'
 
 test_that("enigma_stats works correctly with varchar column", {
   skip_on_cran()
   
-  res1 <- enigma_stats(dataset=cbase, select='acquired_month')
+  res1 <- enigma_stats(dataset=cbase, select='type_of_access')
   expect_is(res1, "enigma_stats")
   expect_true(res1$success)
   expect_is(res1$datapath, "character")
@@ -17,7 +17,7 @@ test_that("enigma_stats works correctly with varchar column", {
 test_that("enigma_stats works correctly with numeric column", {
   skip_on_cran()
   
-  res2 <- enigma_stats(dataset=cbase, select='price_amount')
+  res2 <- enigma_stats(cbase, select = 'total_people')
   expect_is(res2, "enigma_stats")
   expect_true(res2$success)
   expect_is(res2$datapath, "character")
