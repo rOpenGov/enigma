@@ -13,43 +13,50 @@ enigma_stats(dataset = NULL, select, conjunction = NULL, operation = NULL,
 
 \item{select}{(character) Column to get statistics on. Required.}
 
-\item{conjunction}{one of "and" or "or". Only applicable when more than one \code{search}
-or \code{where} parameter is provided. Default: "and"}
+\item{conjunction}{one of "and" or "or". Only applicable when more than 
+one \code{search} or \code{where} parameter is provided. Default: "and"}
 
-\item{operation}{(character) Operation to run on a given column. For a numerical column, valid operations
-are sum, avg, stddev, variance, max, min and frequency. For a date column, valid operations are
-max, min and frequency. For all other columns, the only valid operation is frequency. Defaults
-to all available operations based on the column's type.}
+\item{operation}{(character) Operation to run on a given column. For a 
+numerical column, valid operations are sum, avg, stddev, variance, max, 
+min and frequency. For a date column, valid operations are max, min and 
+frequency. For all other columns, the only valid operation is frequency. 
+Defaults to all available operations based on the column's type.}
 
-\item{by}{(character) Compound operation to run on a given pair of columns. Valid compound
-operations are sum and avg. When running a compound operation query, the \code{of} parameter is
-required (see below).}
+\item{by}{(character) Compound operation to run on a given pair of columns. 
+Valid compound operations are sum and avg. When running a compound operation
+query, the \code{of} parameter is required (see below).}
 
-\item{of}{(character) Numerical column to compare against when running a compound operation.
-Required when using the \code{by} parameter. Must be a numerical column.}
+\item{of}{(character) Numerical column to compare against when running a 
+compound operation. Required when using the \code{by} parameter. Must be 
+a numerical column.}
 
-\item{limit}{(numeric) Limit the number of frequency, compound sum, or compound average results
-returned. Max: 500; Default: 500.}
+\item{limit}{(numeric) Limit the number of frequency, compound sum, or 
+compound average results returned. Max: 500; Default: 500.}
 
-\item{search}{(character) Filter results by only returning rows that match a search query. By
-default this searches the entire table for matching text. To search particular fields only, use
-the query format "@fieldname query". To match multiple queries, the | (or) operator can be used
-eg. "query1|query2".}
+\item{search}{(character) Filter results by only returning rows that match 
+a search query. By default this searches the entire table for matching 
+text. To search particular fields only, use the query format 
+"@fieldname query". To match multiple queries, the | (or) operator can 
+be used eg. "query1|query2".}
 
-\item{where}{(character) Filter results with a SQL-style "where" clause. Only applies to
-numerical columns - use the \code{search} parameter for strings. Valid operators are >, < and =.
-Only one \code{where} clause per request is currently supported.}
+\item{where}{(character) Filter results with a SQL-style "where" clause. 
+Only applies to numerical columns - use the \code{search} parameter for 
+strings. Valid operators are >, < and =. Only one \code{where} clause 
+per request is currently supported.}
 
-\item{sort}{(character) Sort frequency, compound sum, or compound average results in a given
-direction. + denotes ascending order, - denotes descending}
+\item{sort}{(character) Sort frequency, compound sum, or compound average 
+results in a given direction. + denotes ascending order, - denotes 
+descending}
 
-\item{page}{(numeric) Paginate frequency, compound sum, or compound average results and return
-the nth page of results. Pages are calculated based on the current limit, which defaults to 500.}
+\item{page}{(numeric) Paginate frequency, compound sum, or compound average 
+results and return the nth page of results. Pages are calculated based on 
+the current limit, which defaults to 500.}
 
-\item{key}{(character) Required. An Enigma API key. Supply in the function call, or store in
-your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obtain an API key
-by creating an account with Enigma at \url{http://enigma.io}, then obtain an API key from
-your account page.}
+\item{key}{(character) Required. An Enigma API key. Supply in the function 
+call, or store in your \code{.Rprofile} file, or do 
+\code{options(enigmaKey = "<your key>")}. Obtain an API key by creating 
+an account with Enigma at \url{http://enigma.io}, then obtain an API key 
+from your account page}
 
 \item{...}{Named options passed on to \code{\link[httr]{GET}}}
 }
@@ -58,9 +65,10 @@ Get statistics on columns of a dataset from Enigma.
 }
 \examples{
 \dontrun{
-# After obtaining an API key from Enigma's website, pass in your key to the function call
-# or set in your options (see above instructions for the key parameter)
-# If you pass in your key to the function call use the key parameter
+# After obtaining an API key from Enigma's website, pass in your key to 
+# the function call or set in your options (see above instructions for the 
+# key parameter) If you pass in your key to the function call use the 
+# key parameter
 
 # stats on a varchar column
 x <- 'gov.mx.imss.compras.main'

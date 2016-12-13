@@ -9,10 +9,11 @@ enigma_metadata(dataset = NULL, key = NULL, ...)
 \arguments{
 \item{dataset}{Dataset name. Required.}
 
-\item{key}{(character) Required. An Enigma API key. Supply in the function call, or store in
-your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obtain an API key
-by creating an account with Enigma at \url{http://enigma.io}, then obtain an API key from
-your account page.}
+\item{key}{(character) Required. An Enigma API key. Supply in the function 
+call, or store in your \code{.Rprofile} file, or do 
+\code{options(enigmaKey = "<your key>")}. Obtain an API key by creating 
+an account with Enigma at \url{http://enigma.io}, then obtain an API key 
+from your account page.}
 
 \item{...}{Named options passed on to \code{\link[httr]{GET}}}
 }
@@ -20,17 +21,20 @@ your account page.}
 Search for metadata on a dataset from Enigma.
 }
 \details{
-Notice when you run the examples that the format of output is different for the
-"parent nodes" vs. the "table nodes". Where the parent nodes have ouput$meta slots for
-paths, immediate nodes and children tables, while the table nodes have ouput$meta slots for
-info, table, ancestor datapaths, database boundary datapath, database boundary label, database
-boundary tables, and paths, and an additional slot for description of table column attributes.
+Notice when you run the examples that the format of output is 
+different for the "parent nodes" vs. the "table nodes". Where the parent 
+nodes have ouput$meta slots for paths, immediate nodes and children tables, 
+while the table nodes have ouput$meta slots for info, table, ancestor 
+datapaths, database boundary datapath, database boundary label, database
+boundary tables, and paths, and an additional slot for description of table 
+column attributes.
 }
 \examples{
 \dontrun{
-# After obtaining an API key from Enigma's website, pass in your key to the function call
-# or set in your options (see above instructions for the key parameter)
-# If you pass in your key to the function call use the key parameter
+## After obtaining an API key from Enigma's website, pass in your key to the 
+## function call or set in your options (see above instructions for the 
+## key parameter) If you pass in your key to the function call use the key 
+## parameter
 
 # Parent node response attributes from Whitehouse dataset
 ## US white house

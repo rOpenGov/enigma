@@ -14,42 +14,49 @@ enigma_read(input)
 \arguments{
 \item{dataset}{Dataset name. Required.}
 
-\item{select}{(character) Vector of columns to be returned with each row. Default is to return
-all columns.}
+\item{select}{(character) Vector of columns to be returned with each row. 
+Default is to return all columns.}
 
-\item{search}{(character) Filter results by only returning rows that match a search query. By
-default this searches the entire table for matching text. To search particular fields only, use
-the query format "@fieldname query". To match multiple queries, the | (or) operator can be used
+\item{search}{(character) Filter results by only returning rows that match 
+a search query. By default this searches the entire table for matching text.
+To search particular fields only, use the query format "@fieldname query". 
+To match multiple queries, the | (or) operator can be used 
 eg. "query1|query2".}
 
-\item{where}{(character) Filter results with a SQL-style "where" clause. Only applies to
-numerical columns - use the \code{search} parameter for strings. Valid operators are >, < and =.
-Only one \code{where} clause per request is currently supported.}
+\item{where}{(character) Filter results with a SQL-style "where" clause. 
+Only applies to numerical columns - use the \code{search} parameter for 
+strings. Valid operators are >, < and =. Only one \code{where} clause per 
+request is currently supported.}
 
-\item{conjunction}{one of "and" or "or". Only applicable when more than one \code{search}
-or \code{where} parameter is provided. Default: "and"}
+\item{conjunction}{one of "and" or "or". Only applicable when more than one 
+\code{search} or \code{where} parameter is provided. Default: "and"}
 
-\item{sort}{(character) Sort rows by a particular column in a given direction. + denotes
-ascending order, - denotes descending. See examples.}
+\item{sort}{(character) Sort rows by a particular column in a given 
+direction. + denotes ascending order, - denotes descending. See examples.}
 
-\item{path}{File name and path of output zip file. Defaults to write a zip file to your home
-directory with name of the dataset, and file extension \code{.csv.gz}.}
+\item{path}{File name and path of output zip file. Defaults to write a zip 
+file to your home directory with name of the dataset, and file extension 
+\code{.csv.gz}.}
 
 \item{overwrite}{Will only overwrite existing path if TRUE.}
 
-\item{key}{(character) Required. An Enigma API key. Supply in the function call, or store in
-your \code{.Rprofile} file, or do \code{options(enigmaKey = "<your key>")}. Obtain an API key
-by creating an account with Enigma at \url{http://enigma.io}, then obtain an API key from
+\item{key}{(character) Required. An Enigma API key. Supply in the function 
+call, or store in your \code{.Rprofile} file, or do 
+\code{options(enigmaKey = "<your key>")}. Obtain an API key by creating 
+an account with Enigma at \url{http://enigma.io}, then obtain an API key from
 your account page.}
 
-\item{poll_sleep}{(integer) Time to sleep between polling events to fetch data. For very large
-datasets, it could take a while to be ready. By default, we poll continuously. If you are 
-requesting a large dataset and/or have not much left on your allowed requests with 
-Enigam (see \code{\link{rate_limit}}) you may want to insert some sleep time between pollings.}
+\item{poll_sleep}{(integer) Time to sleep between polling events to fetch 
+data. For very large datasets, it could take a while to be ready. By 
+default, we poll continuously. If you are requesting a large dataset and/or 
+have not much left on your allowed requests with Enigam (see 
+\code{\link{rate_limit}}) you may want to insert some sleep time between 
+pollings.}
 
 \item{...}{Named options passed on to \code{\link[httr]{GET}}}
 
-\item{input}{The output from \code{enigma_fetch} or a path to a file downloaded from Enigma.io}
+\item{input}{The output from \code{enigma_fetch} or a path to a file d
+ownloaded from Enigma.io}
 }
 \value{
 A (character) path to the file on your machine
@@ -58,19 +65,23 @@ A (character) path to the file on your machine
 Download a gzipped csv file of a dataset.
 }
 \details{
-Note that \code{\link[enigma]{enigma_fetch}} downloads the file, and gives back a
-path to the file. In a separte function, \code{\link[enigma]{enigma_read}}, you can read in the
-data. \code{\link[enigma]{enigma_fetch}} doesn't read in data in case the file is very large
-which may make your R session crash or slow down significantly.
+Note that \code{\link[enigma]{enigma_fetch}} downloads the file, 
+and gives back a path to the file. In a separte function, 
+\code{\link[enigma]{enigma_read}}, you can read in the data. 
+\code{\link[enigma]{enigma_fetch}} doesn't read in data in case the file 
+is very large which may make your R session crash or slow down 
+significantly.
 
-This function makes a request to ask Enigma to get a download ready. We then poll the 
-provided URL from Enigma until it is ready. Once ready we fetch it and write it to disk.
+This function makes a request to ask Enigma to get a download ready. We 
+then poll the  provided URL from Enigma until it is ready. Once ready we 
+fetch it and write it to disk.
 }
 \examples{
 \dontrun{
-# After obtaining an API key from Enigma's website, pass in your key to the function call
-# or set in your options (see above instructions for the key parameter)
-# If you pass in your key to the function call use the key parameter
+## After obtaining an API key from Enigma's website, pass in your key to 
+## the function call or set in your options (see above instructions for the 
+## key parameter) If you pass in your key to the function call use the 
+## key parameter
 
 # Fetch a dataset
 res <- enigma_fetch(dataset='edu.umd.start.gtd')
