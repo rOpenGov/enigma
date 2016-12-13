@@ -42,9 +42,6 @@ enigma_metadata(dataset='edu.ucla.epr')
 # Table node response attributes
 ## US white house visitor list table
 enigma_metadata(dataset='us.gov.whitehouse.visitor-list')
-
-## UCLA Ethnic power relations dataset - armed conflict table
-enigma_metadata('edu.ucla.epr.ethnic-armed-conflict')
 }
 }
 

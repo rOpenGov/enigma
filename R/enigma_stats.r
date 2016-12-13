@@ -39,32 +39,27 @@
 #'
 #' # stats on a varchar column
 #' x <- 'gov.mx.imss.compras.main'
-#' enigma_stats(x, select='provider_id')
+#' enigma_stats(x, select='provider_id', limit = 10)
 #'
 #' # stats on a numeric column
-#' enigma_stats(x, select='serialid')
+#' enigma_stats(x, select='serialid', limit = 10)
 #'
 #' # stats on a date column
 #' pakistan <- 'gov.pk.secp.business-registry.all-entities'
 #' enigma_metadata(dataset=pakistan)
-#' enigma_stats(dataset=pakistan, select='registration_date')
+#' enigma_stats(dataset=pakistan, select='registration_date', limit = 10)
 #'
 #' # stats on a date column, by the average of a numeric column
 #' aust <- 'gov.au.government-spending.federal-contracts'
 #' enigma_metadata(dataset=aust)
-#' enigma_stats(dataset=aust, select='contractstart', by='avg', of='value')
+#' enigma_stats(dataset=aust, select='contractstart', by='avg', of='value', 
+#'   limit = 10)
 #'
 #' # Get frequency of distances traveled
 #' ## get columns for the air carrier dataset
 #' dset <- 'us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier'
 #' enigma_metadata(dset)$columns$table[,c(1:4)]
-#' enigma_stats(dset, select='distance')
-#'
-#' # conjunction parmeter, compare these two queries
-#' enigma_stats(dataset = 'us.gov.dol.ogesdw.msha.msha-accident', select = "no_injuries",
-#'    where = c('degree_injury_cd > 2', 'no_injuries > 1'), conjunction = "and")
-#' enigma_stats(dataset = 'us.gov.dol.ogesdw.msha.msha-accident', select = "no_injuries",
-#'    where = c('degree_injury_cd > 2', 'no_injuries > 1'), conjunction = "or")
+#' enigma_stats(dset, select='distance', limit = 10)
 #' }
 
 enigma_stats <- function(dataset=NULL, select, conjunction = NULL, operation=NULL,

@@ -62,10 +62,6 @@
 #'    where = "nkill > 0", select = c("country_txt", "attacktype1", "nkill"))
 #' df <- enigma_read(res)
 #' head(df)
-#'
-#' # Curl debugging
-#' library('httr')
-#' enigma_fetch(dataset='edu.umd.start.gtd', config=verbose())
 #' }
 
 enigma_fetch <- function(dataset = NULL, select = NULL, search = NULL, where = NULL,

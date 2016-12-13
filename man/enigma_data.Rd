@@ -51,17 +51,17 @@ Fetch a dataset from Enigma.
 # If you pass in your key to the function call use the key parameter
 
 # White house visitor list
-enigma_data(dataset='us.gov.whitehouse.visitor-list')
+enigma_data(dataset='us.gov.whitehouse.visitor-list', limit = 10)
 
 # White house visitor list - selecting three columns
 enigma_data(dataset='us.gov.whitehouse.visitor-list', select=c('namelast','visitee_namelast',
 'last_updatedby'))
 
 # White house visitor list - sort by last name
-enigma_data(dataset='us.gov.whitehouse.visitor-list', sort='+namelast')
+enigma_data(dataset='us.gov.whitehouse.visitor-list', sort='+namelast', limit = 10)
 
 # White house visitor list - get rows where total_people > 5
-enigma_data(dataset='us.gov.whitehouse.visitor-list', where='total_people > 5')
+enigma_data(dataset='us.gov.whitehouse.visitor-list', where='total_people > 5', limit = 10)
 
 # White house visitor list - search for Vitale in full name field
 ## remove the 2nd at symbol before running
@@ -73,16 +73,10 @@ enigma_data(dataset='us.gov.whitehouse.visitor-list', where='total_people > 5')
 
 # Domestic Market Flight Statistics (Final Destination)
 dataset='us.gov.dot.rita.trans-stats.air-carrier-statistics.t100d-market-all-carrier'
-enigma_data(dataset=dataset)
+enigma_data(dataset=dataset, limit = 10)
 
 # Search for 'casa' in the Mexico's Social Security Department dataset
-enigma_data('gov.mx.imss.compras.main', search='casa', select=c('proveedor','fecha'))
-
-# conjunction parmeter, compare these two queries
-enigma_data(dataset = 'us.gov.dol.ogesdw.msha.msha-accident',
-   where = c('degree_injury_cd > 2', 'no_injuries > 1'), conjunction = "and")
-enigma_data(dataset = 'us.gov.dol.ogesdw.msha.msha-accident',
-   where = c('degree_injury_cd > 2', 'no_injuries > 1'), conjunction = "or")
+enigma_data('gov.mx.imss.compras.main', search='casa', select=c('proveedor','fecha'), limit = 10)
 }
 }
 

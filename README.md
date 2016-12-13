@@ -7,7 +7,7 @@ enigma
 <!-- [![Coverage Status](https://coveralls.io/repos/rOpenGov/enigma/badge.svg)](https://coveralls.io/r/rOpenGov/enigma) -->
 [![codecov.io](https://codecov.io/github/rOpenGov/enigma/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/enigma?branch=master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/enigma)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/enigma)](http://cran.rstudio.com/web/packages/enigma)
+[![cran version](http://www.r-pkg.org/badges/version/enigma)](https://cran.r-project.org/package=enigma)
 
 **An R client for [Enigma.io](https://app.enigma.io/)**
 
