@@ -15,7 +15,7 @@ call, or store in your \code{.Rprofile} file, or do
 an account with Enigma at \url{http://enigma.io}, then obtain an API key 
 from your account page.}
 
-\item{...}{Named options passed on to \code{\link[httr]{GET}}}
+\item{...}{Named curl options passed on to \code{\link[crul]{HttpClient}}}
 }
 \description{
 Search for metadata on a dataset from Enigma.
@@ -36,16 +36,12 @@ column attributes.
 ## key parameter) If you pass in your key to the function call use the key 
 ## parameter
 
-# Parent node response attributes from Whitehouse dataset
-## US white house
-enigma_metadata(dataset='us.gov.whitehouse')
-
 ## UCLA Ethnic power relations dataset
-enigma_metadata(dataset='edu.ucla.epr')
+enigma_metadata(dataset = 'edu.ucla.epr')
 
 # Table node response attributes
 ## US white house visitor list table
-enigma_metadata(dataset='us.gov.whitehouse.visitor-list')
+enigma_metadata(dataset = 'us.gov.whitehouse.visitor-list')
 }
 }
 

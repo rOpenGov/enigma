@@ -6,8 +6,8 @@
 \title{Download a gzipped csv file of a dataset.}
 \usage{
 enigma_fetch(dataset = NULL, select = NULL, search = NULL, where = NULL,
-  conjunction = NULL, sort = NULL, path = NULL, overwrite = TRUE,
-  key = NULL, poll_sleep = 0, ...)
+  conjunction = NULL, sort = NULL, path = NULL, key = NULL,
+  poll_sleep = 0, ...)
 
 enigma_read(input)
 }
@@ -38,13 +38,11 @@ direction. + denotes ascending order, - denotes descending. See examples.}
 file to your home directory with name of the dataset, and file extension 
 \code{.csv.gz}.}
 
-\item{overwrite}{Will only overwrite existing path if TRUE.}
-
 \item{key}{(character) Required. An Enigma API key. Supply in the function 
 call, or store in your \code{.Rprofile} file, or do 
 \code{options(enigmaKey = "<your key>")}. Obtain an API key by creating 
-an account with Enigma at \url{http://enigma.io}, then obtain an API key from
-your account page.}
+an account with Enigma at \url{http://enigma.io}, then obtain an API key 
+from your account page.}
 
 \item{poll_sleep}{(integer) Time to sleep between polling events to fetch 
 data. For very large datasets, it could take a while to be ready. By 
@@ -53,10 +51,12 @@ have not much left on your allowed requests with Enigam (see
 \code{\link{rate_limit}}) you may want to insert some sleep time between 
 pollings.}
 
-\item{...}{Named options passed on to \code{\link[httr]{GET}}}
+\item{...}{Named curl options passed on to \code{\link[crul]{HttpClient}}}
 
 \item{input}{The output from \code{enigma_fetch} or a path to a file d
 ownloaded from Enigma.io}
+
+\item{overwrite}{Will only overwrite existing path if TRUE.}
 }
 \value{
 A (character) path to the file on your machine
@@ -84,23 +84,22 @@ fetch it and write it to disk.
 ## key parameter
 
 # Fetch a dataset
-res <- enigma_fetch(dataset='edu.umd.start.gtd')
-head(enigma_read(res))
+res <- enigma_fetch(dataset = 'edu.umd.start.gtd')
+enigma_read(res)
 
 # Use the select parameter to limit fields returned
-res <- enigma_fetch(dataset='edu.umd.start.gtd',
+res <- enigma_fetch(dataset = 'edu.umd.start.gtd',
    select = c("country_txt", "resolution", "attacktype1"))
-head(enigma_read(res))
+enigma_read(res)
 
 # Use the search parameter to query entire table or particular fields
-res <- enigma_fetch(dataset='edu.umd.start.gtd', search = "armed")
-head(enigma_read(res))
+res <- enigma_fetch(dataset = 'edu.umd.start.gtd', search = "armed")
+enigma_read(res)
 
 # Use the search parameter to query entire table or particular fields
-res <- enigma_fetch(dataset='edu.umd.start.gtd',
+res <- enigma_fetch(dataset = 'edu.umd.start.gtd',
    where = "nkill > 0", select = c("country_txt", "attacktype1", "nkill"))
-df <- enigma_read(res)
-head(df)
+enigma_read(res)
 }
 }
 

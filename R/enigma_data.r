@@ -1,7 +1,8 @@
 #' Fetch a dataset from Enigma.
 #'
 #' @export
-#'
+#' 
+#' @template key-curl
 #' @param dataset Dataset name. Required.
 #' @param limit (numeric) Number of rows of the dataset to return. Default 
 #' (and max): 500
@@ -23,12 +24,6 @@
 #' To search particular fields only, use the query format "@@fieldname query". 
 #' To match multiple queries, the | (or) operator can be used 
 #' eg. "query1|query2".
-#' @param key (character) Required. An Enigma API key. Supply in the function 
-#' call, or store in your \code{.Rprofile} file, or do 
-#' \code{options(enigmaKey = "<your key>")}. Obtain an API key by creating 
-#' an account with Enigma at \url{http://enigma.io}, then obtain an API key from
-#' your account page.
-#' @param ... Named options passed on to \code{\link[httr]{GET}}
 #' @examples \dontrun{
 #' # After obtaining an API key from Enigma's website, pass in your key to 
 #' # the function call or set in your options (see above instructions for the 
@@ -85,11 +80,11 @@ enigma_data <- function(dataset=NULL, limit=500, select=NULL, conjunction=NULL,
   json <- enigma_GET(url, args, ...)
   meta <- json$info
   json$result <- lapply(json$result, as.list)
-  dat2 <- do.call(rbind.fill,
+  dat2 <- tibble::as_tibble(do.call(rbind.fill,
                   lapply(json$result, function(x){
                     x[sapply(x, is.null)] <- NA
                     data.frame(x, stringsAsFactors = FALSE)
-                  }))
+                  })))
   structure(list(success = json$success, datapath = json$datapath, info = meta, 
                  result = dat2), class = "enigma", dataset = dataset)
 }
@@ -100,7 +95,7 @@ print.enigma <- function(x, ..., n = 10) {
   cat(paste0("  Dataset: ", attr(x, "dataset")), sep = "\n")
   cat(paste0("  Found/returned: ", sprintf("[%s/%s]", x$info$total_results, 
                                            NROW(x$result))), "\n", sep = "\n")
-  trunc_mat(x$result, n = n)
+  print(x$result)
 }
 
 proc_search_where <- function(x, y) {

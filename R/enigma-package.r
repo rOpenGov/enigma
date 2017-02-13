@@ -26,10 +26,6 @@
 #' an API key by creating an account with Enigma at \url{http://enigma.io}, 
 #' then get an API key from your Enigma account page.
 #'
-#' @importFrom methods is
-#' @importFrom utils read.delim head
-#' @importFrom httr GET content write_disk parse_url stop_for_status
-#' @importFrom jsonlite fromJSON
 #' @importFrom plyr rbind.fill
 #' @importFrom xml2 read_xml
 #' @name enigma

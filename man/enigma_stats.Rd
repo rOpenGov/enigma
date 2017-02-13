@@ -51,14 +51,6 @@ descending}
 \item{page}{(numeric) Paginate frequency, compound sum, or compound average 
 results and return the nth page of results. Pages are calculated based on 
 the current limit, which defaults to 500.}
-
-\item{key}{(character) Required. An Enigma API key. Supply in the function 
-call, or store in your \code{.Rprofile} file, or do 
-\code{options(enigmaKey = "<your key>")}. Obtain an API key by creating 
-an account with Enigma at \url{http://enigma.io}, then obtain an API key 
-from your account page}
-
-\item{...}{Named options passed on to \code{\link[httr]{GET}}}
 }
 \description{
 Get statistics on columns of a dataset from Enigma.
