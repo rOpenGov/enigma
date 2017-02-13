@@ -39,8 +39,9 @@ file to your home directory with name of the dataset, and file extension
 \code{.csv.gz}.}
 
 \item{key}{(character) Required. An Enigma API key. Supply in the function 
-call, or store in your \code{.Rprofile} file, or do 
-\code{options(enigmaKey = "<your key>")}. Obtain an API key by creating 
+call, or store in your \code{.Renviron} file like 
+\code{ENIGMA_KEY=your key)}, or in your \code{.Rprofile} file as 
+\code{options(enigmaKey = "<your key>")}, Obtain an API key by creating 
 an account with Enigma at \url{http://enigma.io}, then obtain an API key 
 from your account page.}
 
@@ -55,8 +56,6 @@ pollings.}
 
 \item{input}{The output from \code{enigma_fetch} or a path to a file d
 ownloaded from Enigma.io}
-
-\item{overwrite}{Will only overwrite existing path if TRUE.}
 }
 \value{
 A (character) path to the file on your machine
@@ -75,6 +74,8 @@ significantly.
 This function makes a request to ask Enigma to get a download ready. We 
 then poll the  provided URL from Enigma until it is ready. Once ready we 
 fetch it and write it to disk.
+
+If file exists already, we overwrite it.
 }
 \examples{
 \dontrun{
