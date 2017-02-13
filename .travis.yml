@@ -6,6 +6,8 @@ cache: packages
 after_success:
   - Rscript -e 'covr::codecov()'
 
+r_check_args: "--as-cran --run-dontrun"
+
 env:
   global:
     secure: RD34tjL9cAIbDeVIyM5d3RS7WeTapGNj6NhFs4Sb+9hNHa7T5Wezh/IJD4/ZkfZ9k/IaVpulDHExCSUfT/i9hfwwhd6pNIUp2cuDuAyFo4p+2mqtjUKhV0rNVDekeq01hbC5DMFx3r7W4RcPsa81SYcGq7li4vPns1cdK56en4Y=
