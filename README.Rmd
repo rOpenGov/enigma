@@ -14,7 +14,6 @@ knitr::opts_chunk$set(
 ```
 
 [![Build Status](https://api.travis-ci.org/rOpenGov/enigma.png)](https://travis-ci.org/rOpenGov/enigma)
-<!-- [![Coverage Status](https://coveralls.io/repos/rOpenGov/enigma/badge.svg)](https://coveralls.io/r/rOpenGov/enigma) -->
 [![codecov.io](https://codecov.io/github/rOpenGov/enigma/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/enigma?branch=master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/enigma)](https://github.com/metacran/cranlogs.app)
 [![cran version](http://www.r-pkg.org/badges/version/enigma)](https://cran.r-project.org/package=enigma)
@@ -43,7 +42,6 @@ install.packages("enigma")
 Or development version from GitHub
 
 ```{r eval=FALSE}
-install.packages("devtools")
 devtools::install_github("ropengov/enigma")
 ```
 
@@ -51,10 +49,13 @@ devtools::install_github("ropengov/enigma")
 library("enigma")
 ```
 
-### Get data
+## Get data
 
 ```{r}
-out <- enigma_data(dataset='us.gov.whitehouse.visitor-list', select=c('namelast','visitee_namelast','last_updatedby'))
+out <- enigma_data(
+  dataset = 'us.gov.whitehouse.visitor-list', 
+  select = c('namelast', 'visitee_namelast', 'last_updatedby')
+)
 ```
 
 Some metadata on the results
@@ -70,10 +71,13 @@ head(out$result)
 ```
 
 
-### Statistics on dataset columns
+## Statistics on dataset columns
 
 ```{r}
-out <- enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='total_people')
+out <- enigma_stats(
+  dataset = 'us.gov.whitehouse.visitor-list', 
+  select = 'total_people'
+)
 ```
 
 Some summary stats
@@ -90,10 +94,10 @@ head(out$result$frequency)
 ```
 
 
-### Metadata on datasets
+## Metadata on datasets
 
 ```{r}
-out <- enigma_metadata(dataset='us.gov.whitehouse')
+out <- enigma_metadata(dataset = 'us.gov.whitehouse')
 ```
 
 Paths
@@ -116,7 +120,7 @@ out$info$children_tables[[1]]
 ```
 
 
-### Use case: Plot frequency of flight distances
+## Use case: Plot frequency of flight distances
 
 First, get columns for the air carrier dataset
 
@@ -129,7 +133,7 @@ head(enigma_metadata(dset)$columns$table[,c(1:4)])
 Looks like there's a column called _distance_ that we can search on. We by default for `varchar` type columns only `frequency` bake for the column.
 
 ```{r}
-out <- enigma_stats(dset, select='distance')
+out <- enigma_stats(dset, select = 'distance')
 head(out$result$frequency)
 ```
 
@@ -138,15 +142,16 @@ Then we can do a bit of tidying and make a plot
 ```{r tidy=FALSE}
 library("ggplot2")
 df <- out$result$frequency
-df <- data.frame(distance=as.numeric(df$distance), count=as.numeric(df$count))
+df <- data.frame(distance = as.numeric(df$distance), 
+                 count = as.numeric(df$count))
 ggplot(df, aes(distance, count)) +
-  geom_bar(stat="identity") +
+  geom_bar(stat = "identity") +
   geom_point() +
   theme_grey(base_size = 18) +
-  labs(y="flights", x="distance (miles)")
+  labs(y = "flights", x = "distance (miles)")
 ```
 
-### Direct dataset download
+## Direct dataset download
 
 Enigma provides an endpoint `.../export/<datasetid>` to download a zipped csv file of the entire dataset.
 
@@ -155,3 +160,7 @@ Enigma provides an endpoint `.../export/<datasetid>` to download a zipped csv fi
 ```r
 enigma_fetch(dataset='com.crunchbase.info.companies.acquisition')
 ```
+
+## Meta
+
+* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.

@@ -42,6 +42,8 @@
 #' 
 #' If file exists already, we overwrite it.
 #' 
+#' @references \url{https://app.enigma.io/api#exporting}
+#' 
 #' @return A (character) path to the file on your machine
 #'
 #' @examples \dontrun{

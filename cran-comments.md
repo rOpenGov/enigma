@@ -1,12 +1,28 @@
-R CMD CHECK passed on my local OS X install on R 3.2.1 and R development
-version, Ubuntu running on Travis-CI, and Win builder.
+## Test environments
 
-This submission fixes a number of broken functions due to the
-recent update in httr on CRAN to v1.0.
+* local OS X install, R 3.3.2
+* ubuntu 12.04 (on travis-ci), R 3.3.2
+* win-builder (devel and release)
+* R-hub (Windows R-devel, Ubuntu R-release, Fedora R-devel)
 
-In addition, this package now imports non-base functions explicitly as
-needed in accordance with R-devel changes.
+## R CMD check results
 
-Additional fixes/changes were made to keep up with changes in the Enigma.io APIs.
+0 errors | 0 warnings | 1 note
 
-Thanks! Scott Chamberlain
+   License components with restrictions and base license permitting such:
+     MIT + file LICENSE
+   File 'LICENSE':
+     YEAR: 2017
+     COPYRIGHT HOLDER: Scott Chamberlain
+
+## Reverse dependencies
+
+There are no reverse dependencies.
+
+---
+
+This submission includes improvements to documentation, swaps out a 
+package dependency, and other small changes.
+
+Thanks!
+Scott Chamberlain

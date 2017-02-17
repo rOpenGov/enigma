@@ -61,6 +61,28 @@ from your account page.}
 
 \item{...}{Named curl options passed on to \code{\link[crul]{HttpClient}}}
 }
+\value{
+A list with items:
+\itemize{
+ \item success - a boolean if query was successful or not
+ \item datapath - the dataset path (this is not a file path on your machine)
+ \item info - a list of length 6 with:
+   \itemize{ 
+    \item column - a list of information on the variable you requested
+    stats on
+    \item operations - a list of the operations you requested
+    \item rows_limit - rows limit
+    \item total_results - total items found (likely more than was returned)
+    \item total_pages - total pages found (see also \code{current_page})
+    \item current_page - page returned  (see also \code{total_pages})
+    \item calls_remaining - number of requests remaining
+    \item seconds_remaining - seconds remaining before your rate limit 
+    resets
+   }
+ \item result - a named list of objects - depends on the data 
+ source returned
+}
+}
 \description{
 Get statistics on columns of a dataset from Enigma.
 }
@@ -96,4 +118,6 @@ enigma_metadata(dset)$columns$table[,c(1:4)]
 enigma_stats(dset, select='distance', limit = 10)
 }
 }
-
+\references{
+\url{https://app.enigma.io/api#stats}
+}

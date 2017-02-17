@@ -24,6 +24,24 @@
 #' To search particular fields only, use the query format "@@fieldname query". 
 #' To match multiple queries, the | (or) operator can be used 
 #' eg. "query1|query2".
+#' @references \url{https://app.enigma.io/api#data}
+#' @return A list with items:
+#' \itemize{
+#'  \item success - a boolean if query was successful or not
+#'  \item datapath - the dataset path (this is not a file path on your machine)
+#'  \item info - a list of length 6 with:
+#'    \itemize{ 
+#'     \item rows_limit - rows limit
+#'     \item total_results - total items found (likely more than was returned)
+#'     \item total_pages - total pages found (see also \code{current_page})
+#'     \item current_page - page returned  (see also \code{total_pages})
+#'     \item calls_remaining - number of requests remaining
+#'     \item seconds_remaining - seconds remaining before your rate limit 
+#'     resets
+#'    }
+#'  \item result - a data.frame/tibble - columns depend on the data 
+#'  source returned
+#' }
 #' @examples \dontrun{
 #' # After obtaining an API key from Enigma's website, pass in your key to 
 #' # the function call or set in your options (see above instructions for the 

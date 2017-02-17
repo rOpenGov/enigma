@@ -34,6 +34,27 @@
 #' @param page (numeric) Paginate frequency, compound sum, or compound average 
 #' results and return the nth page of results. Pages are calculated based on 
 #' the current limit, which defaults to 500.
+#' @references \url{https://app.enigma.io/api#stats}
+#' @return A list with items:
+#' \itemize{
+#'  \item success - a boolean if query was successful or not
+#'  \item datapath - the dataset path (this is not a file path on your machine)
+#'  \item info - a list of length 6 with:
+#'    \itemize{ 
+#'     \item column - a list of information on the variable you requested
+#'     stats on
+#'     \item operations - a list of the operations you requested
+#'     \item rows_limit - rows limit
+#'     \item total_results - total items found (likely more than was returned)
+#'     \item total_pages - total pages found (see also \code{current_page})
+#'     \item current_page - page returned  (see also \code{total_pages})
+#'     \item calls_remaining - number of requests remaining
+#'     \item seconds_remaining - seconds remaining before your rate limit 
+#'     resets
+#'    }
+#'  \item result - a named list of objects - depends on the data 
+#'  source returned
+#' }
 #' @examples \dontrun{
 #' # After obtaining an API key from Enigma's website, pass in your key to 
 #' # the function call or set in your options (see above instructions for the 

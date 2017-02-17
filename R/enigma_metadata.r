@@ -11,6 +11,18 @@
 #' datapaths, database boundary datapath, database boundary label, database
 #' boundary tables, and paths, and an additional slot for description of table 
 #' column attributes.
+#' @references \url{https://app.enigma.io/api#metadata}
+#' @return A list of length 3:
+#' \itemize{
+#'  \item success - a boolean if query was successful or not
+#'  \item datapath - the dataset path (this is not a file path on your machine)
+#'  \item info - a list of length 6 with:
+#'    \itemize{ 
+#'     \item paths - paths under the dataset
+#'     \item immediate_notes - children nodes
+#'     \item children_tables - children tables
+#'    }
+#' }
 #' @examples \dontrun{
 #' ## After obtaining an API key from Enigma's website, pass in your key to the 
 #' ## function call or set in your options (see above instructions for the 

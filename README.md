@@ -4,7 +4,6 @@ enigma
 
 
 [![Build Status](https://api.travis-ci.org/rOpenGov/enigma.png)](https://travis-ci.org/rOpenGov/enigma)
-<!-- [![Coverage Status](https://coveralls.io/repos/rOpenGov/enigma/badge.svg)](https://coveralls.io/r/rOpenGov/enigma) -->
 [![codecov.io](https://codecov.io/github/rOpenGov/enigma/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/enigma?branch=master)
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/enigma)](https://github.com/metacran/cranlogs.app)
 [![cran version](http://www.r-pkg.org/badges/version/enigma)](https://cran.r-project.org/package=enigma)
@@ -35,7 +34,6 @@ Or development version from GitHub
 
 
 ```r
-install.packages("devtools")
 devtools::install_github("ropengov/enigma")
 ```
 
@@ -44,11 +42,14 @@ devtools::install_github("ropengov/enigma")
 library("enigma")
 ```
 
-### Get data
+## Get data
 
 
 ```r
-out <- enigma_data(dataset='us.gov.whitehouse.visitor-list', select=c('namelast','visitee_namelast','last_updatedby'))
+out <- enigma_data(
+  dataset = 'us.gov.whitehouse.visitor-list', 
+  select = c('namelast', 'visitee_namelast', 'last_updatedby')
+)
 ```
 
 Some metadata on the results
@@ -60,19 +61,19 @@ out$info
 #> [1] 500
 #> 
 #> $total_results
-#> [1] 4462510
+#> [1] 5994713
 #> 
 #> $total_pages
-#> [1] 8926
+#> [1] 11990
 #> 
 #> $current_page
 #> [1] 1
 #> 
 #> $calls_remaining
-#> [1] 49914
+#> [1] 49764
 #> 
 #> $seconds_remaining
-#> [1] 2084748
+#> [1] 957301
 ```
 
 Look at the data, first 6 rows for readme brevity
@@ -80,21 +81,26 @@ Look at the data, first 6 rows for readme brevity
 
 ```r
 head(out$result)
-#>   namelast visitee_namelast last_updatedby
-#> 1 MATTHEWS            POTUS             LC
-#> 2    DOYLE            POTUS             B3
-#> 3 MATTHEWS            POTUS             LC
-#> 4   MALONE            POTUS             DC
-#> 5   WILSON            POTUS             DC
-#> 6    ABEBE            POTUS             GB
+#> # A tibble: 6 × 3
+#>      namelast visitee_namelast last_updatedby
+#>         <chr>            <chr>          <chr>
+#> 1 Adamopoulos             <NA>           <NA>
+#> 2     Brosman             <NA>           <NA>
+#> 3   Brumfield             <NA>           <NA>
+#> 4     Chipman             <NA>           <NA>
+#> 5       Chubb             <NA>           <NA>
+#> 6   Colasante             <NA>           <NA>
 ```
 
 
-### Statistics on dataset columns
+## Statistics on dataset columns
 
 
 ```r
-out <- enigma_stats(dataset='us.gov.whitehouse.visitor-list', select='total_people')
+out <- enigma_stats(
+  dataset = 'us.gov.whitehouse.visitor-list', 
+  select = 'total_people'
+)
 ```
 
 Some summary stats
@@ -103,16 +109,16 @@ Some summary stats
 ```r
 out$result[c('sum','avg','stddev','variance','min','max')]
 #> $sum
-#> [1] "1245086302"
+#> [1] "1626083121"
 #> 
 #> $avg
-#> [1] "280.4864992845274096"
+#> [1] "272.5916137604454583"
 #> 
 #> $stddev
-#> [1] "533.430430655024"
+#> [1] "599.377962130311"
 #> 
 #> $variance
-#> [1] "284548.024348804258"
+#> [1] "359253.941487484525"
 #> 
 #> $min
 #> [1] "0"
@@ -128,20 +134,20 @@ Frequency details
 ```r
 head(out$result$frequency)
 #>   total_people  count
-#> 1            1 205885
-#> 2            6 126360
-#> 3            2 124847
-#> 4            4 101829
-#> 5            3 100926
-#> 6          275  89107
+#> 1            1 286296
+#> 2            6 224602
+#> 3            2 197491
+#> 4            4 181489
+#> 5            3 160771
+#> 6            5 151562
 ```
 
 
-### Metadata on datasets
+## Metadata on datasets
 
 
 ```r
-out <- enigma_metadata(dataset='us.gov.whitehouse')
+out <- enigma_metadata(dataset = 'us.gov.whitehouse')
 ```
 
 Paths
@@ -157,10 +163,13 @@ out$info$paths
 #> [1] "United States"
 #> 
 #> [[1]]$description
-#> [1] "United States of America"
+#> [1] "Data concerning, or published by, the federal government of the United States of America."
 #> 
 #> [[1]]$description_lead
-#> [1] "United States of America"
+#> [1] "Data concerning, or published by, the federal government of the United States of America."
+#> 
+#> [[1]]$citations
+#> list()
 #> 
 #> 
 #> [[2]]
@@ -176,6 +185,9 @@ out$info$paths
 #> [[2]]$description_lead
 #> [1] "Government comprising the Legislative, Executive, and Judicial branches of the United States of America."
 #> 
+#> [[2]]$citations
+#> list()
+#> 
 #> 
 #> [[3]]
 #> [[3]]$level
@@ -189,6 +201,9 @@ out$info$paths
 #> 
 #> [[3]]$description_lead
 #> [1] "Located at 1600 Pennsylvania Avenue in Washington D.C., the White House has served as the home and office for every U.S. president since John Adams."
+#> 
+#> [[3]]$citations
+#> list()
 ```
 
 Immediate nodes
@@ -217,7 +232,7 @@ out$info$children_tables[[1]]
 #> [1] "us.gov.whitehouse.visitor-list"
 #> 
 #> $label
-#> [1] "Visitor Records"
+#> [1] "White House Visitor Records"
 #> 
 #> $description
 #> [1] "Records of visitors to the White House from September 2009 to present."
@@ -230,7 +245,7 @@ out$info$children_tables[[1]]
 ```
 
 
-### Use case: Plot frequency of flight distances
+## Use case: Plot frequency of flight distances
 
 First, get columns for the air carrier dataset
 
@@ -252,7 +267,7 @@ Looks like there's a column called _distance_ that we can search on. We by defau
 
 
 ```r
-out <- enigma_stats(dset, select='distance')
+out <- enigma_stats(dset, select = 'distance')
 head(out$result$frequency)
 #>   distance count
 #> 1     0.00 16456
@@ -269,17 +284,18 @@ Then we can do a bit of tidying and make a plot
 ```r
 library("ggplot2")
 df <- out$result$frequency
-df <- data.frame(distance=as.numeric(df$distance), count=as.numeric(df$count))
+df <- data.frame(distance = as.numeric(df$distance), 
+                 count = as.numeric(df$count))
 ggplot(df, aes(distance, count)) +
-  geom_bar(stat="identity") +
+  geom_bar(stat = "identity") +
   geom_point() +
   theme_grey(base_size = 18) +
-  labs(y="flights", x="distance (miles)")
+  labs(y = "flights", x = "distance (miles)")
 ```
 
-![plot of chunk unnamed-chunk-17](inst/assets/figure/unnamed-chunk-17-1.png) 
+![plot of chunk unnamed-chunk-17](inst/assets/figure/unnamed-chunk-17-1.png)
 
-### Direct dataset download
+## Direct dataset download
 
 Enigma provides an endpoint `.../export/<datasetid>` to download a zipped csv file of the entire dataset.
 
@@ -288,3 +304,7 @@ Enigma provides an endpoint `.../export/<datasetid>` to download a zipped csv fi
 ```r
 enigma_fetch(dataset='com.crunchbase.info.companies.acquisition')
 ```
+
+## Meta
+
+* Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.

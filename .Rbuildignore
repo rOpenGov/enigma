@@ -8,3 +8,5 @@ Makefile
 vignettes/figure
 NEWS.md
 man-roxygen
+^cran-comments\.md$
+^CONDUCT\.md$

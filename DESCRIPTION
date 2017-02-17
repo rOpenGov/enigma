@@ -8,7 +8,7 @@ Description: The company 'Enigma' (<http://enigma.io>) holds many public
     well as collecting statistics on 'datasets'. In addition, you can download 
     a 'gzipped' 'csv' file of a 'dataset' if you want the whole 'dataset'. An 
     'API' key from 'Enigma' is required to use 'enigma'.
-Version: 0.2.8.9140
+Version: 0.3.0
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
@@ -24,7 +24,8 @@ Imports:
     xml2,
     tibble
 Suggests:
+    roxygen2 (>= 6.0.1),
     knitr,
     testthat,
     covr
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

@@ -18,6 +18,19 @@ from your account page.}
 
 \item{...}{Named curl options passed on to \code{\link[crul]{HttpClient}}}
 }
+\value{
+A list of length 3:
+\itemize{
+ \item success - a boolean if query was successful or not
+ \item datapath - the dataset path (this is not a file path on your machine)
+ \item info - a list of length 6 with:
+   \itemize{ 
+    \item paths - paths under the dataset
+    \item immediate_notes - children nodes
+    \item children_tables - children tables
+   }
+}
+}
 \description{
 Search for metadata on a dataset from Enigma.
 }
@@ -45,4 +58,6 @@ enigma_metadata(dataset = 'edu.ucla.epr')
 enigma_metadata(dataset = 'us.gov.whitehouse.visitor-list')
 }
 }
-
+\references{
+\url{https://app.enigma.io/api#metadata}
+}
