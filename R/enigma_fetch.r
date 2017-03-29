@@ -53,21 +53,22 @@
 #' ## key parameter
 #'
 #' # Fetch a dataset
-#' res <- enigma_fetch(dataset = 'edu.umd.start.gtd')
+#' res <- enigma_fetch('org.un.comtrade.1')
 #' enigma_read(res)
 #'
 #' # Use the select parameter to limit fields returned
-#' res <- enigma_fetch(dataset = 'edu.umd.start.gtd',
-#'    select = c("country_txt", "resolution", "attacktype1"))
+#' res <- enigma_fetch('org.un.comtrade.1',
+#'    select = c("country_area", "year", "flow", "trade_usd"))
 #' enigma_read(res)
 #'
 #' # Use the search parameter to query entire table or particular fields
-#' res <- enigma_fetch(dataset = 'edu.umd.start.gtd', search = "armed")
+#' res <- enigma_fetch('org.un.comtrade.1', search = "export")
 #' enigma_read(res)
 #'
 #' # Use the search parameter to query entire table or particular fields
-#' res <- enigma_fetch(dataset = 'edu.umd.start.gtd',
-#'    where = "nkill > 0", select = c("country_txt", "attacktype1", "nkill"))
+#' res <- enigma_fetch(dataset = 'org.un.comtrade.1',
+#'    where = "trade_usd > 90000000", 
+#'    select = c("country_area", "year", "trade_usd"))
 #' enigma_read(res)
 #' }
 
