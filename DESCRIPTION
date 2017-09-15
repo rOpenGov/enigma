@@ -1,6 +1,6 @@
 Package: enigma
 Title: Client for the 'Enigma' 'API'
-Description: The company 'Enigma' (<http://enigma.io>) holds many public
+Description: The company 'Enigma' (<http://enigma.com>) holds many public
     'datasets' from governments, companies, universities, and organizations.
     'Enigma' provides an 'API' for data, 'metadata', and statistics on each of
     the 'datasets'. 'enigma' is a client to interact with the 'Enigma' 'API',
@@ -8,7 +8,7 @@ Description: The company 'Enigma' (<http://enigma.io>) holds many public
     well as collecting statistics on 'datasets'. In addition, you can download 
     a 'gzipped' 'csv' file of a 'dataset' if you want the whole 'dataset'. An 
     'API' key from 'Enigma' is required to use 'enigma'.
-Version: 0.3.0.9150
+Version: 0.3.1.9110
 Authors@R: c(person("Scott", "Chamberlain", role = c("aut", "cre"),
     email = "myrmecocystus@gmail.com"))
 License: MIT + file LICENSE
@@ -26,6 +26,5 @@ Imports:
 Suggests:
     roxygen2 (>= 6.0.1),
     knitr,
-    testthat,
-    covr
+    testthat
 RoxygenNote: 6.0.1
