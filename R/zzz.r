@@ -2,7 +2,7 @@ ec <- function(l) Filter(Negate(is.null), l)
 
 error_handler <- function(x) {
   txt <- x$parse("UTF-8")
-  json <- jsonlite::fromJSON(txt, FALSE)
+  json <- jsonlite::fromJSON(txt, TRUE, flatten = TRUE)
   res_info <- json$info
   if (x$status_code %in% c(400, 500)) {
     stop(
@@ -10,13 +10,20 @@ error_handler <- function(x) {
       call. = FALSE)
   }
   stopifnot(
-    x$response_headers$`content-type` == 'application/json; charset=utf-8')
+    x$response_headers$`content-type` == 'application/vnd.enigma+json; version=1')
   return(json)
 }
 
-enigma_GET <- function(url, args, ...){
+enigma_GET <- function(url, key, args, ...) {
   if (length(args) == 0) args <- NULL
-  cli <- crul::HttpClient$new(url = url)
+  cli <- crul::HttpClient$new(
+    url = url,
+    headers = list(
+      #Accept = '*/*',
+      Accept = "application/vnd.enigma+json; version=1",
+      Authorization = paste0("Bearer ", key)
+    )
+  )
   res <- cli$get(query = args, ...)
   error_handler(res)
 }
@@ -34,4 +41,4 @@ check_key <- function(x){
   }
 }
 
-en_base <- function() 'https://api.enigma.io/v2'
+en_base <- function() 'https://public.enigma.com/api'
