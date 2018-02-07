@@ -8,7 +8,7 @@ enigma
 [![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/grand-total/enigma)](https://github.com/metacran/cranlogs.app)
 [![cran version](http://www.r-pkg.org/badges/version/enigma)](https://cran.r-project.org/package=enigma)
 
-**An R client for [Enigma.io](https://app.enigma.io/)**
+**An R client for [Enigma.io](https://www.enigma.com)**
 
 Enigma holds government data and provides a really nice set of APIs for data, metadata, and stats on each of the datasets. That is, you can request a dataset itself, metadata on the dataset, and summary statistics on the columns of each dataset.
 
