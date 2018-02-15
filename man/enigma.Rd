@@ -33,7 +33,7 @@ An API key is required to use this package. You can supply your key in each
 function call, or store in your \code{.Renviron} file like 
 \code{ENIGMA_KEY=your key)}, or in your \code{.Rprofile} file as 
 \code{options(enigmaKey = "<your key>")}, Obtain an API key by creating 
-an account with Enigma at \url{http://enigma.io}, then obtain an API key 
+an account with Enigma at \url{https://www.enigma.com}, then obtain an API key 
 from your account page.
 }
 
